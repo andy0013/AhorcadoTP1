@@ -1,0 +1,27 @@
+/*
+ * lector_de_archivo.h
+ *
+ *  Created on: 17 sep. 2021
+ *      Author: andres
+ */
+
+#include <stdio.h>
+
+#ifndef LECTOR_DE_ARCHIVO_H_
+#define LECTOR_DE_ARCHIVO_H_
+
+typedef struct {
+	FILE *file;
+	char *line;
+	size_t lenLineaLeida;
+} lector_de_archivo;
+
+
+void archivo_inicio(lector_de_archivo *archivo);
+
+void leer_linea_archivo(lector_de_archivo *archivo);
+
+void archivo_fin();
+
+
+#endif /* LECTOR_DE_ARCHIVO_H_ */

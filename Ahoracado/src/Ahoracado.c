@@ -11,91 +11,93 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
-#define BUFFER_SIZE 2
-#define INPUT_USER 10
-
-
-typedef struct {
-	FILE *file;
-	size_t lenFile;
-} file_reader_t;
+#include "juego_ahorcado.h"
 
 
 
-void elCharLeidoPertenece(char* line,char leido){
+void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz){
 
 	char ch;
 
-	char palabraParaInterfaz[(strlen(line)-1)];
+	int userFalloLetra = 1;
 
-	int i = 0;
-
-	ch = line[i];
-
-	while((ch != '\n') & (ch != EOF)){
-
+	for(int i = 0 ; i < strlen(line) ; i++ ){
 		ch = line[i];
 
-		if(ch != leido){
-			palabraParaInterfaz[i] = '_';
-		} else {
+		if(ch == leido){
 			palabraParaInterfaz[i] = leido;
+			userFalloLetra = 0;
 		}
 
-		i++;
 	}
 
-	printf("%s",palabraParaInterfaz);
+	if(userFalloLetra == 1){
+		*intentos = *intentos - 1 ;
+	}
+
 
 }
 
 
 int main(void) {
 
+	juego juego_ahorcado;
 
-	FILE* file = fopen("words.txt", "r");
+	juego_inicio(&juego_ahorcado);
 
-	if( file == NULL) {
-		return 1;
-	}
+	juego_ejecutar(&juego_ahorcado);
 
-	char *line = NULL;
-
-	size_t len = 0;
-
-	getline(&line,&len,file);
-
-	printf("%s",line);
-
-	printf("%s","ingrese una letra:");
-
-	char *input = NULL;
-
-	size_t sizeBytes = 0;
-
-	getline(&input,&sizeBytes,stdin);
-
-	int i=0;
-
-	char leido = input[i];
-
-	//STRLEN?
-	while((leido != EOF) & (leido != '\n')){
-
-		printf("%c",leido);
-		elCharLeidoPertenece(line,leido);
-
-		i++;
-		leido = input[i];
-
-
-	}
-
-
-
-
+//	FILE* file = fopen("words.txt", "r");
+//
+//	if( file == NULL) {
+//		return 1;
+//	}
+//
+//	char *line = NULL;
+//
+//	size_t len = 0;
+//
+//	getline(&line,&len,file);
+//
+//	int intentos = 5;
+//
+//	char palabraParaInterfaz[strlen(line)];
+//
+//
+//	for (int i = 0 ; i < strlen(line) ; i++  ){
+//
+//		palabraParaInterfaz[i] = '_';
+//
+//	}
+//
+//	while(intentos != 0){
+//
+//		char *input = NULL;
+//
+//		size_t sizeBytes = 0;
+//
+//		printf("%s\n","ingrese una letra:");
+//
+//		getline(&input,&sizeBytes,stdin);
+//
+//		int i=0;
+//
+//		char leido = input[i];
+//
+//		while((leido != EOF) & (leido != '\n')){
+//
+//			elCharLeidoPertenece(line,leido,&intentos,palabraParaInterfaz);
+//			i++;
+//			leido = input[i];
+//
+//			printf("%s\n",palabraParaInterfaz);
+//		}
+//
+//
+//	}
+//
+//
+//
 
 	return 0;
 }
