@@ -6,7 +6,7 @@
  */
 
 #include "juego_ahorcado.h"
-
+#include <string.h>
 
 
 void juego_inicio(juego *instancia_de_juego){
@@ -35,9 +35,47 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 	juego_inicializar_palabra_actual_para_usuario(palabraParaInterfaz,longitudDePalabraPorAdivinarEnEsteIntento);
 
+	while(instancia_de_juego->intentosDisponibles != 0){
+
+//		int i=0;
+//
+//		char leido = input[i];
+//
+//		while((leido != EOF) & (leido != '\n')){
+//
+//			elCharLeidoPertenece(instancia_de_juego->archivo.line,leido,&instancia_de_juego->intentosDisponibles,palabraParaInterfaz);
+//			i++;
+//			leido = input[i];
+//
+//			printf("%s\n",palabraParaInterfaz);
+//		}
+//
+//
+//	}
 
 
 }
+
+void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz){
+
+	char ch;
+
+	int userFalloLetra = 1;
+
+	for(int i = 0 ; i < strlen(line) ; i++ ){
+		ch = line[i];
+
+		if(ch == leido){
+			palabraParaInterfaz[i] = leido;
+			userFalloLetra = 0;
+		}
+
+	}
+
+	if(userFalloLetra == 1){
+		*intentos = *intentos - 1 ;
+	}
+
 
 }
 
@@ -52,6 +90,7 @@ void juego_inicializar_palabra_actual_para_usuario(char *palabraParaInterfaz, in
 	for (int i = 0 ; i < longitudDePalabraPorAdivinarEnEsteIntento ; i++){
 
 		palabraParaInterfaz[i] = '_';
+	}
 
 }
 

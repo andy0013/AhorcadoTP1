@@ -15,35 +15,37 @@
 
 
 
-void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz){
-
-	char ch;
-
-	int userFalloLetra = 1;
-
-	for(int i = 0 ; i < strlen(line) ; i++ ){
-		ch = line[i];
-
-		if(ch == leido){
-			palabraParaInterfaz[i] = leido;
-			userFalloLetra = 0;
-		}
-
-	}
-
-	if(userFalloLetra == 1){
-		*intentos = *intentos - 1 ;
-	}
-
-
-}
-
+//void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz){
+//
+//	char ch;
+//
+//	int userFalloLetra = 1;
+//
+//	for(int i = 0 ; i < strlen(line) ; i++ ){
+//		ch = line[i];
+//
+//		if(ch == leido){
+//			palabraParaInterfaz[i] = leido;
+//			userFalloLetra = 0;
+//		}
+//
+//	}
+//
+//	if(userFalloLetra == 1){
+//		*intentos = *intentos - 1 ;
+//	}
+//
+//
+//}
+//
 
 int main(void) {
 
 	juego juego_ahorcado;
 
 	juego_inicio(&juego_ahorcado);
+
+	juego_preparar_archivo(&juego_ahorcado);
 
 	juego_ejecutar(&juego_ahorcado);
 

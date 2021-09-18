@@ -25,6 +25,8 @@ void juego_inicializar_palabra_actual_para_usuario(char *palabraParaInterfaz, in
 
 void juego_modificar_palabra_actual_para_usuario(char *palabraParaInterfaz);
 
+void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz);
+
 void juego_ejecutar(juego *instancia_de_juego);
 
 void juego_fin();
