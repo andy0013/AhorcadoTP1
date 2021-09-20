@@ -45,7 +45,7 @@ int main(void) {
 
 	juego_inicio(&juego_ahorcado);
 
-	juego_preparar_archivo(&juego_ahorcado);
+	juego_preparar_ahorcado(&juego_ahorcado);
 
 	juego_ejecutar(&juego_ahorcado);
 
@@ -77,15 +77,7 @@ int main(void) {
 //		char *input = NULL;
 //
 //		size_t sizeBytes = 0;
-//
-//		printf("%s\n","ingrese una letra:");
-//
-//		getline(&input,&sizeBytes,stdin);
-//
-//		int i=0;
-//
-//		char leido = input[i];
-//
+////
 //		while((leido != EOF) & (leido != '\n')){
 //
 //			elCharLeidoPertenece(line,leido,&intentos,palabraParaInterfaz);

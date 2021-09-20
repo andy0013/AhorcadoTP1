@@ -13,45 +13,42 @@ void juego_inicio(juego *instancia_de_juego){
 	instancia_de_juego->intentosDisponibles = 5;
 	lector_de_archivo palabras_por_descubrir;
 	instancia_de_juego->archivo = palabras_por_descubrir;
+	cliente user_servidor;
+	instancia_de_juego->cliente_user_servidor = user_servidor;
 
 }
 
-void juego_preparar_archivo(juego *instancia_de_juego){
+void juego_preparar_ahorcado(juego *instancia_de_juego){
 
 	archivo_inicio(&instancia_de_juego->archivo);
 
 	leer_linea_archivo(&instancia_de_juego->archivo);
+
+	cliente_inicio(&instancia_de_juego->cliente_user_servidor);
 
 
 }
 
 void juego_ejecutar(juego *instancia_de_juego){
 
-	//ACA DEBERIA USAR CONEXION DE UNA PERSONA!
-
 	int longitudDePalabraPorAdivinarEnEsteIntento  = strlen(instancia_de_juego->archivo.line);
 
 	char palabraParaInterfaz[longitudDePalabraPorAdivinarEnEsteIntento];
 
+	char input_user;
+
 	juego_inicializar_palabra_actual_para_usuario(palabraParaInterfaz,longitudDePalabraPorAdivinarEnEsteIntento);
+
+	cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
 	while(instancia_de_juego->intentosDisponibles != 0){
 
-//		int i=0;
-//
-//		char leido = input[i];
-//
-//		while((leido != EOF) & (leido != '\n')){
-//
-//			elCharLeidoPertenece(instancia_de_juego->archivo.line,leido,&instancia_de_juego->intentosDisponibles,palabraParaInterfaz);
-//			i++;
-//			leido = input[i];
-//
-//			printf("%s\n",palabraParaInterfaz);
-//		}
-//
-//
-//	}
+		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,&instancia_de_juego->intentosDisponibles,palabraParaInterfaz);
+
+		printf("%s\n",palabraParaInterfaz);
+
+		cliente_obtener_input_siguiente_user(&instancia_de_juego->cliente_user_servidor, &input_user);
+	}
 
 
 }
