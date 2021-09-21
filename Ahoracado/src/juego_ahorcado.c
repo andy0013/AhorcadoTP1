@@ -15,37 +15,61 @@ void juego_inicio(juego *instancia_de_juego){
 	instancia_de_juego->archivo = palabras_por_descubrir;
 	cliente user_servidor;
 	instancia_de_juego->cliente_user_servidor = user_servidor;
+	palabra palabra_leida;
+	instancia_de_juego->palabra_leida = palabra_leida;
+}
+
+void juego_levantar_dato(juego *instancia_de_juego){
+
+	archivo_inicio(&instancia_de_juego->archivo);
 
 }
 
-void juego_preparar_ahorcado(juego *instancia_de_juego){
 
-	archivo_inicio(&instancia_de_juego->archivo);
+void juego_preparar_ahorcado(juego *instancia_de_juego){
 
 	leer_linea_archivo(&instancia_de_juego->archivo);
 
 	cliente_inicio(&instancia_de_juego->cliente_user_servidor);
 
+	int longitudDePalabraPorAdivinarEnEsteIntento  = (strlen(instancia_de_juego->archivo.line)-1);
+
+	palabra_inicio(&instancia_de_juego->palabra_leida, 0 , longitudDePalabraPorAdivinarEnEsteIntento, instancia_de_juego->archivo.line);
 
 }
 
 void juego_ejecutar(juego *instancia_de_juego){
 
-	int longitudDePalabraPorAdivinarEnEsteIntento  = strlen(instancia_de_juego->archivo.line);
-
-	char palabraParaInterfaz[longitudDePalabraPorAdivinarEnEsteIntento];
-
 	char input_user;
 
-	juego_inicializar_palabra_actual_para_usuario(palabraParaInterfaz,longitudDePalabraPorAdivinarEnEsteIntento);
+	char palabra_actual[instancia_de_juego->palabra_leida.longitud];
+
+	cliente_inicializar_palabra_actual_para_usuario(palabra_actual,instancia_de_juego->palabra_leida.longitud);
 
 	cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
 	while(instancia_de_juego->intentosDisponibles != 0){
 
-		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,&instancia_de_juego->intentosDisponibles,palabraParaInterfaz);
+		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,instancia_de_juego->intentosDisponibles,&palabra_actual,&instancia_de_juego->palabra_leida.cantidad_de_letras);
 
-		printf("%s\n",palabraParaInterfaz);
+		printf("%s\n", palabra_actual);
+
+		if(instancia_de_juego->palabra_leida.longitud == instancia_de_juego->palabra_leida.cantidad_de_letras) {
+
+			cliente_user_adivino_la_palabra();
+
+			juego_preparar_ahorcado(&(*instancia_de_juego));
+
+			palabra_actual[instancia_de_juego->palabra_leida.longitud];
+
+			cliente_inicializar_palabra_actual_para_usuario(palabra_actual,instancia_de_juego->palabra_leida.longitud);
+
+			cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
+
+		}
+
+		//printf("%s\n", instancia_de_juego->palabra_leida.palabra);
+
 
 		cliente_obtener_input_siguiente_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 	}
@@ -53,7 +77,7 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 }
 
-void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz){
+void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz,int *letras_adivinadas){
 
 	char ch;
 
@@ -65,30 +89,25 @@ void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraPara
 		if(ch == leido){
 			palabraParaInterfaz[i] = leido;
 			userFalloLetra = 0;
+			*letras_adivinadas = *letras_adivinadas + 1;
 		}
 
 	}
 
 	if(userFalloLetra == 1){
-		*intentos = *intentos - 1 ;
+		*intentos = *intentos - 1;
 	}
 
 
 }
+
+
+
 
 void juego_fin(){
 
 
 }
 
-
-void juego_inicializar_palabra_actual_para_usuario(char *palabraParaInterfaz, int longitudDePalabraPorAdivinarEnEsteIntento){
-
-	for (int i = 0 ; i < longitudDePalabraPorAdivinarEnEsteIntento ; i++){
-
-		palabraParaInterfaz[i] = '_';
-	}
-
-}
 
 

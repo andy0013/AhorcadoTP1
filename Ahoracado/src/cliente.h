@@ -19,8 +19,6 @@ typedef struct {
 
 	int posicion_letra_leida;
 
-	char *palabraParaUser;
-
 } cliente;
 
 
@@ -30,11 +28,10 @@ void cliente_obtener_input_user(cliente *instancia_de_cliente, char *char_user);
 
 void cliente_obtener_input_siguiente_user(cliente *instancia_de_cliente,char *char_user);
 
+void cliente_inicializar_palabra_actual_para_usuario(char *palabraParaInterfaz, int longitudDePalabraPorAdivinarEnEsteIntento);
+
 void cliente_preparar_palabra(cliente *instancia_de_cliente);
 
-//	printf("%s\n","ingrese una letra:");
-//
-//	getline(&input,&sizeBytes,stdin);
-
+void cliente_user_adivino_la_palabra();
 
 #endif /* CLIENTE_H_ */

@@ -45,6 +45,8 @@ int main(void) {
 
 	juego_inicio(&juego_ahorcado);
 
+	juego_levantar_dato(&juego_ahorcado);
+
 	juego_preparar_ahorcado(&juego_ahorcado);
 
 	juego_ejecutar(&juego_ahorcado);
@@ -61,6 +63,21 @@ int main(void) {
 //
 //	getline(&line,&len,file);
 //
+//	puts(line);
+//
+//	getline(&line,&len,file);
+//
+//	puts(line);
+//
+//	getline(&line,&len,file);
+//
+//	puts(line);
+//
+//	getline(&line,&len,file);
+//
+//	puts(line);
+//
+	//
 //	int intentos = 5;
 //
 //	char palabraParaInterfaz[strlen(line)];

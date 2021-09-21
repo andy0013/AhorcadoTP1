@@ -9,8 +9,6 @@
 
 void cliente_inicio(cliente *instancia_de_cliente){
 
-	instancia_de_cliente->palabraParaUser = NULL;
-
 	instancia_de_cliente->input = NULL;
 
 	instancia_de_cliente->sizeBytes = 0;
@@ -25,7 +23,7 @@ void cliente_obtener_input_user(cliente *instancia_de_cliente,char *char_user){
 
 	printf("%s\n","ingrese una letra:");
 
-	getline(&instancia_de_cliente->input,&instancia_de_cliente->input,stdin);
+	getline(&instancia_de_cliente->input,&instancia_de_cliente->sizeBytes,stdin);
 
 	*char_user = instancia_de_cliente->input[instancia_de_cliente->posicion_letra_leida];
 
@@ -47,6 +45,21 @@ void cliente_obtener_input_siguiente_user(cliente *instancia_de_cliente,char *ch
 
 	}
 
+}
 
+
+void cliente_inicializar_palabra_actual_para_usuario(char *palabraParaInterfaz, int longitudDePalabraPorAdivinarEnEsteIntento){
+
+	for (int i = 0 ; i < longitudDePalabraPorAdivinarEnEsteIntento ; i++){
+
+		palabraParaInterfaz[i] = '_';
+	}
 
 }
+
+void cliente_user_adivino_la_palabra(){
+
+	printf("Ganaste\n\n");
+
+}
+
