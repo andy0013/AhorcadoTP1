@@ -40,17 +40,19 @@ void juego_preparar_ahorcado(juego *instancia_de_juego){
 
 }
 
+
+
 void juego_ejecutar(juego *instancia_de_juego){
 
 	char input_user;
 
-	cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
-
 	while((instancia_de_juego->intentosDisponibles != 0) & (!linea_llego_al_final(&instancia_de_juego->archivo.file))){
 
-		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,&instancia_de_juego->intentosDisponibles,instancia_de_juego->palabra_leida.palabra_en_juego,&instancia_de_juego->palabra_leida.cantidad_de_letras);
+		cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
-		printf("%s\n", instancia_de_juego->palabra_leida.palabra_en_juego);
+		palabra_detectar_char_y_modificar_datos(&instancia_de_juego->palabra_leida,input_user,&instancia_de_juego->intentosDisponibles);
+
+		cliente_mensaje_palabra_actual(instancia_de_juego->palabra_leida.palabra_en_juego);
 
 		if(palabras_leidas_e_construidas_son_iguales(&instancia_de_juego->palabra_leida)) {
 
@@ -58,41 +60,15 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 			juego_preparar_ahorcado(&(*instancia_de_juego));
 
-			cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
-
-		} else {
-
-			cliente_obtener_input_siguiente_user(&instancia_de_juego->cliente_user_servidor, &input_user);
-
+			instancia_de_juego->veces_que_gano = instancia_de_juego->veces_que_gano + 1;
 		}
 
 	}
-}
 
-void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz,int *letras_adivinadas){
-
-	char ch;
-
-	int userFalloLetra = 1;
-
-	for(int i = 0 ; i < (strlen(line)-1) ; i++ ){
-		ch = line[i];
-
-		if(ch == leido){
-			palabraParaInterfaz[i] = leido;
-			userFalloLetra = 0;
-			*letras_adivinadas = *letras_adivinadas + 1;
-		}
-	}
-
-	if(userFalloLetra == 1){
-		*intentos = *intentos - 1;
-	}
+	cliente_mensaje_final_del_juego( instancia_de_juego->veces_que_gano , instancia_de_juego->veces_que_perdio);
 
 
 }
-
-
 
 
 void juego_fin(){

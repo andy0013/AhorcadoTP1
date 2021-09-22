@@ -15,7 +15,7 @@ typedef struct {
 
 	char *input;
 
-	size_t sizeBytes;
+	int se_cargo_input;
 
 	int posicion_letra_leida;
 
@@ -28,9 +28,9 @@ void cliente_obtener_input_user(cliente *instancia_de_cliente, char *char_user);
 
 void cliente_obtener_input_siguiente_user(cliente *instancia_de_cliente,char *char_user);
 
-void cliente_inicializar_palabra_actual_para_usuario(char *palabraParaInterfaz, int longitudDePalabraPorAdivinarEnEsteIntento);
+void cliente_mensaje_palabra_actual(char *palabra_actual);
 
-void cliente_preparar_palabra(cliente *instancia_de_cliente);
+void cliente_mensaje_final_del_juego(int cantidad_ganadas, int cantidad_perdidas);
 
 void cliente_user_adivino_la_palabra();
 
