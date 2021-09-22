@@ -18,6 +18,8 @@ typedef struct {
 	lector_de_archivo archivo;
 	cliente cliente_user_servidor;
 	palabra palabra_leida;
+	int veces_que_gano;
+	int veces_que_perdio;
 } juego;
 
 

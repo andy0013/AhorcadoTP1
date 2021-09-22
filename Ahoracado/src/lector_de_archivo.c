@@ -19,6 +19,14 @@ void leer_linea_archivo(lector_de_archivo *archivo){
 
 }
 
+int linea_llego_al_final(lector_de_archivo *archivo){
+
+	return feof(archivo->file) ? 1 : 0;
+
+}
+
+
+
 void archivo_fin(){
 
 }

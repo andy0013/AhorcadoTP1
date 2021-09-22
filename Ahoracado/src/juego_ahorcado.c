@@ -17,6 +17,8 @@ void juego_inicio(juego *instancia_de_juego){
 	instancia_de_juego->cliente_user_servidor = user_servidor;
 	palabra palabra_leida;
 	instancia_de_juego->palabra_leida = palabra_leida;
+	instancia_de_juego->veces_que_gano = 0;
+	instancia_de_juego->veces_que_perdio = 0;
 }
 
 void juego_levantar_dato(juego *instancia_de_juego){
@@ -34,7 +36,7 @@ void juego_preparar_ahorcado(juego *instancia_de_juego){
 
 	int longitudDePalabraPorAdivinarEnEsteIntento  = (strlen(instancia_de_juego->archivo.line)-1);
 
-	palabra_inicio(&instancia_de_juego->palabra_leida, 0 , longitudDePalabraPorAdivinarEnEsteIntento, instancia_de_juego->archivo.line);
+	palabra_inicio(&instancia_de_juego->palabra_leida, longitudDePalabraPorAdivinarEnEsteIntento, instancia_de_juego->archivo.line);
 
 }
 
@@ -44,13 +46,13 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 	cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
-	while(instancia_de_juego->intentosDisponibles != 0){
+	while((instancia_de_juego->intentosDisponibles != 0) & (!linea_llego_al_final(&instancia_de_juego->archivo.file))){
 
 		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,&instancia_de_juego->intentosDisponibles,instancia_de_juego->palabra_leida.palabra_en_juego,&instancia_de_juego->palabra_leida.cantidad_de_letras);
 
 		printf("%s\n", instancia_de_juego->palabra_leida.palabra_en_juego);
 
-		if(instancia_de_juego->palabra_leida.longitud == instancia_de_juego->palabra_leida.cantidad_de_letras) {
+		if(palabras_leidas_e_construidas_son_iguales(&instancia_de_juego->palabra_leida)) {
 
 			cliente_user_adivino_la_palabra();
 
@@ -58,12 +60,13 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 			cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
+		} else {
+
+			cliente_obtener_input_siguiente_user(&instancia_de_juego->cliente_user_servidor, &input_user);
+
 		}
 
-		cliente_obtener_input_siguiente_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 	}
-
-
 }
 
 void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraParaInterfaz,int *letras_adivinadas){
