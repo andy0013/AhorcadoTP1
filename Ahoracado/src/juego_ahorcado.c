@@ -42,17 +42,13 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 	char input_user;
 
-	char palabra_actual[instancia_de_juego->palabra_leida.longitud];
-
-	cliente_inicializar_palabra_actual_para_usuario(palabra_actual,instancia_de_juego->palabra_leida.longitud);
-
 	cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
 	while(instancia_de_juego->intentosDisponibles != 0){
 
-		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,instancia_de_juego->intentosDisponibles,&palabra_actual,&instancia_de_juego->palabra_leida.cantidad_de_letras);
+		elCharLeidoPertenece(instancia_de_juego->archivo.line,input_user,&instancia_de_juego->intentosDisponibles,instancia_de_juego->palabra_leida.palabra_en_juego,&instancia_de_juego->palabra_leida.cantidad_de_letras);
 
-		printf("%s\n", palabra_actual);
+		printf("%s\n", instancia_de_juego->palabra_leida.palabra_en_juego);
 
 		if(instancia_de_juego->palabra_leida.longitud == instancia_de_juego->palabra_leida.cantidad_de_letras) {
 
@@ -60,16 +56,9 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 			juego_preparar_ahorcado(&(*instancia_de_juego));
 
-			palabra_actual[instancia_de_juego->palabra_leida.longitud];
-
-			cliente_inicializar_palabra_actual_para_usuario(palabra_actual,instancia_de_juego->palabra_leida.longitud);
-
 			cliente_obtener_input_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 
 		}
-
-		//printf("%s\n", instancia_de_juego->palabra_leida.palabra);
-
 
 		cliente_obtener_input_siguiente_user(&instancia_de_juego->cliente_user_servidor, &input_user);
 	}
@@ -83,7 +72,7 @@ void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraPara
 
 	int userFalloLetra = 1;
 
-	for(int i = 0 ; i < strlen(line) ; i++ ){
+	for(int i = 0 ; i < (strlen(line)-1) ; i++ ){
 		ch = line[i];
 
 		if(ch == leido){
@@ -91,7 +80,6 @@ void elCharLeidoPertenece(char* line,char leido,int *intentos, char *palabraPara
 			userFalloLetra = 0;
 			*letras_adivinadas = *letras_adivinadas + 1;
 		}
-
 	}
 
 	if(userFalloLetra == 1){
