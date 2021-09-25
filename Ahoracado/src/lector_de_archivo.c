@@ -6,7 +6,7 @@
  */
 #include "lector_de_archivo.h"
 
-void archivo_inicio(lector_de_archivo *archivo){
+void archivo_inicio(lector_de_archivo *archivo,char *argumento_path_archivo){
 	archivo->file = fopen("words.txt", "r");
 	archivo->line = NULL;
 	archivo->lenLineaLeida = 0;
@@ -21,7 +21,7 @@ void leer_linea_archivo(lector_de_archivo *archivo){
 
 int linea_llego_al_final(lector_de_archivo *archivo){
 
-	return feof(archivo->file) ? 1 : 0;
+	return feof(archivo->file);
 
 }
 

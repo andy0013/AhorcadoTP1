@@ -1,37 +1,33 @@
 /*
  * cliente.h
  *
- *  Created on: 18 sep. 2021
+ *  Created on: 24 sep. 2021
  *      Author: andres
  */
 
-#ifndef CLIENTE_H_
-#define CLIENTE_H_
+#ifndef SRC_CLIENTE_H_
+#define SRC_CLIENTE_H_
 
 #include <stdio.h>
+#include <string.h>
+#include <wchar.h>
+#include "socket.h"
 
+#define EXITO 0
+#define ERROR 1
 
 typedef struct {
-
-	char *input;
-
-	int se_cargo_input;
-
-	int posicion_letra_leida;
-
+      socket_t skt;
 } cliente;
 
+int cliente_ejecuar(int argc, char *argv[]);
 
-void cliente_inicio(cliente *instancia_de_cliente);
+int cliente_inicio(cliente *servidor_creado, char *port);
 
-void cliente_obtener_input_user(cliente *instancia_de_cliente, char *char_user);
+void cliente_comunicacion(cliente *servidor_creado, char *argumento_path_archivo);
 
-void cliente_obtener_input_siguiente_user(cliente *instancia_de_cliente,char *char_user);
+void cliente_fin(cliente *servidor_creado);
 
-void cliente_mensaje_palabra_actual(char *palabra_actual);
 
-void cliente_mensaje_final_del_juego(int cantidad_ganadas, int cantidad_perdidas);
 
-void cliente_user_adivino_la_palabra();
-
-#endif /* CLIENTE_H_ */
+#endif /* SRC_CLIENTE_H_ */

@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <wchar.h>
 
 
 #ifndef LECTOR_DE_ARCHIVO_H_
@@ -19,7 +20,7 @@ typedef struct {
 } lector_de_archivo;
 
 
-void archivo_inicio(lector_de_archivo *archivo);
+void archivo_inicio(lector_de_archivo *archivo,char *argumento_path_archivo);
 
 void leer_linea_archivo(lector_de_archivo *archivo);
 

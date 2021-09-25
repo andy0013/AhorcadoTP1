@@ -1,84 +1,62 @@
 /*
  * cliente.c
  *
- *  Created on: 18 sep. 2021
+ *  Created on: 24 sep. 2021
  *      Author: andres
  */
-#
+
 #include "cliente.h"
 
-void cliente_inicio(cliente *instancia_de_cliente){
 
-	instancia_de_cliente->input = NULL;
-
-	instancia_de_cliente->se_cargo_input = 0;
-
-	instancia_de_cliente->posicion_letra_leida = 0;
-
+int cliente_ejecuar(int argc, char *argv[]){
+	cliente servidor_conectado;
+	if (cliente_inicio(&servidor_conectado, argv[1])==1)return ERROR;
+	cliente_comunicacion(&servidor_conectado,/*argv[2]*/"7777");
+	return EXITO;
 }
 
-void cliente_obtener_input_user(cliente *instancia_de_cliente,char *char_user){
 
-	//USO PRINT Y GETLINE, DEBE SER SOCKET
+int cliente_inicio(cliente *servidor_creado, char *port){
 
-	if(!instancia_de_cliente->se_cargo_input){
+	socket_t skt;
 
-		printf("%s\n","ingrese una letra:");
+	servidor_creado->skt;
 
-		size_t size_bytes;
+	socket_init(&servidor_creado->skt);
 
-		getline(&instancia_de_cliente->input,&size_bytes,stdin);
+	socket_connect(&servidor_creado->skt, "0.0.0.0", "7777");
 
-		*char_user = instancia_de_cliente->input[instancia_de_cliente->posicion_letra_leida];
+	return EXITO;
+}
 
-		instancia_de_cliente->se_cargo_input = 1;
 
-	} else {
-
-		cliente_obtener_input_siguiente_user(instancia_de_cliente, char_user);
-
+void cliente_comunicacion(cliente *servidor_creado, char *argumento_path_archivo){
+	int enviar_datos = 1;
+	char buffer[18] = {};
+	char *input;
+	size_t size_bytes = 0;
+	while (enviar_datos) {
+		char *buffer = (char *) malloc (18*sizeof(char));
+		socket_receive(&servidor_creado->skt, buffer, 18);
+		printf("%s\n",buffer);
+		if(getline(&input,&size_bytes,stdin)== (-1))break;
+		for(int i = 0 ; i < (strlen(input)) ; i++ ){
+			char letra;
+			letra = input[i];
+			socket_send(&servidor_creado->skt,&letra , 1);
+			if(letra == '\n') break;
+			char word[4] = {};
+			socket_receive(&servidor_creado->skt, word, 4);
+			printf("%s\n",word);
+		}
 	}
 }
 
-void cliente_obtener_input_siguiente_user(cliente *instancia_de_cliente,char *char_user){
 
-	instancia_de_cliente->posicion_letra_leida++;
 
-	if(instancia_de_cliente->input[instancia_de_cliente->posicion_letra_leida] != '\n'){
-
-		*char_user = instancia_de_cliente->input[instancia_de_cliente->posicion_letra_leida];
-
-	}else{
-
-		cliente_inicio(instancia_de_cliente);
-
-		cliente_obtener_input_user(instancia_de_cliente, char_user);
-
-	}
-
-}
-
-void cliente_mensaje_palabra_actual(char *palabra_actual){
-
-	printf("%s\n\n\n", palabra_actual);
-
-}
-
-void cliente_mensaje_final_del_juego(int cantidad_ganadas, int cantidad_perdidas){
-
-	printf("Resumen:\n");
-
-	printf("\t Victorias: %d\n", cantidad_ganadas );
-
-	printf("\t Derrotas: %d\n", cantidad_perdidas);
+void cliente_fin(cliente *servidor_creado){
 
 }
 
 
-
-void cliente_user_adivino_la_palabra(){
-
-	printf("Ganaste\n\n");
-
-}
 
