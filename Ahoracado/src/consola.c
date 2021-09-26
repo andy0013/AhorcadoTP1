@@ -18,6 +18,27 @@ void consola_inicio(consola *instancia_de_consola, protocolo_t *servidor_a_user)
 	instancia_de_consola->servidor_a_user = servidor_a_user;
 }
 
+void consola_conectar_usuario_de_ser_necesario(consola *instancia_de_consola){
+
+	if(instancia_de_consola->servidor_a_user->skt_cliente == NULL){
+
+		protocolo_aceptar_cliente(instancia_de_consola->servidor_a_user);
+
+	}
+
+}
+
+void consola_finalizar_partida_cliente_actual(consola *instancia_de_consola){
+
+	socket_uninit(instancia_de_consola->servidor_a_user->skt_cliente);
+
+	instancia_de_consola->servidor_a_user->skt_cliente = NULL;
+
+}
+
+
+
+
 void consola_obtener_input_user(consola *instancia_de_consola,char *char_user){
 
 	if(!instancia_de_consola->se_cargo_input){
@@ -70,12 +91,4 @@ void consola_mensaje_final_del_juego(int cantidad_ganadas, int cantidad_perdidas
 
 }
 
-
-
-void consola_user_adivino_la_palabra(consola *instancia_de_consola){
-
-	socket_send(instancia_de_consola->servidor_a_user, 'Ganaste!!', 10);
-	socket_send(instancia_de_consola->servidor_a_user, '\n', 10);
-
-}
 

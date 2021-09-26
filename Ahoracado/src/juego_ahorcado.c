@@ -45,6 +45,8 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 	while((instancia_de_juego->intentosDisponibles != 0) & (!linea_llego_al_final(&instancia_de_juego->archivo))){
 
+		consola_conectar_usuario_de_ser_necesario(instancia_de_juego->consola_user_servidor);
+
 		consola_obtener_input_user(instancia_de_juego->consola_user_servidor, &input_user);
 
 		palabra_detectar_char_y_modificar_datos(&instancia_de_juego->palabra_leida,input_user,&instancia_de_juego->intentosDisponibles);
@@ -53,11 +55,9 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 		if(palabras_leidas_e_construidas_son_iguales(&instancia_de_juego->palabra_leida)) {
 
-			protocolo_aceptar_cliente(instancia_de_juego->consola_user_servidor->servidor_a_user);
-
-			consola_user_adivino_la_palabra(instancia_de_juego->consola_user_servidor);
-
 			juego_preparar_ahorcado((instancia_de_juego));
+
+			consola_finalizar_partida_cliente_actual(instancia_de_juego->consola_user_servidor);
 
 			instancia_de_juego->veces_que_gano = instancia_de_juego->veces_que_gano + 1;
 

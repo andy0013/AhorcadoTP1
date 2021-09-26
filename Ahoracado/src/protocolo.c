@@ -19,14 +19,15 @@ void protocolo_inicio_cliente(protocolo_t *instancia_de_protocolo,const char *ho
 
 	socket_connect(instancia_de_protocolo->skt_cliente, host, port);
 
-//	return 1;
-
+//	instancia_de_protocolo
 }
 
 
 void protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,const char *host, const char *port){
 
 	socket_t *skt = malloc(sizeof(socket_t));
+
+	instancia_de_protocolo->skt_cliente = NULL;
 
 	instancia_de_protocolo->skt_server = skt;
 

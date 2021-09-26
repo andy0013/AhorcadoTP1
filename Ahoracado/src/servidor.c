@@ -32,8 +32,6 @@ int servidor_inicio(servidor *servidor_creado, char *port){
 
 void servidor_comunicacion(servidor *servidor_creado, char *argumento_path_archivo){
 
-	protocolo_aceptar_cliente(servidor_creado->procolo);
-
 	juego juego_ahorcado;
 
 	consola jugador;
