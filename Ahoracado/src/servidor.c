@@ -9,9 +9,9 @@
 #ifndef SERVIDOR_C_
 #define SERVIDOR_C_
 
-int servidor_ejecutar(int argc, char *argv[]){
+int servidor_execute(int argc, char *argv[]){
 	servidor servidor_levantado;
-	servidor_inicio(&servidor_levantado, argv[1]);
+	if (servidor_inicio(&servidor_levantado, argv[1])==1) return ERROR;
 	servidor_comunicacion(&servidor_levantado,/*argv[3]*/"words.txt");
 	return EXITO;
 }
@@ -19,13 +19,11 @@ int servidor_ejecutar(int argc, char *argv[]){
 
 int servidor_inicio(servidor *servidor_creado, char *port){
 
-	socket_t skt;
+	protocolo_t *protocolo = malloc(sizeof(protocolo_t));
 
-	servidor_creado->skt;
+	protocolo_inicio_servidor(protocolo, NULL, "7777");
 
-	socket_init(&servidor_creado->skt);
-
-	socket_bind_and_listen(&servidor_creado->skt, NULL, /*port*/ "7777");
+	servidor_creado->procolo = protocolo;
 
 	return EXITO;
 }
@@ -34,15 +32,13 @@ int servidor_inicio(servidor *servidor_creado, char *port){
 
 void servidor_comunicacion(servidor *servidor_creado, char *argumento_path_archivo){
 
-	socket_t skt_cliente_conectado;
+	protocolo_aceptar_cliente(servidor_creado->procolo);
 
 	juego juego_ahorcado;
 
 	consola jugador;
 
-	socket_accept(&servidor_creado->skt,&skt_cliente_conectado);
-
-	consola_inicio(&jugador, &skt_cliente_conectado);
+	consola_inicio(&jugador, servidor_creado->procolo);
 
 	juego_inicio(&juego_ahorcado,&jugador);
 

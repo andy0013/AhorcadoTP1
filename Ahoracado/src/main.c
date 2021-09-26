@@ -14,15 +14,13 @@
 #define CLIENTE "client"
 
 int main(int argc, char *argv[]) {
-    //int argc2 = 4;
-    //char *argv2[] = {"./server","0.0.0.0","7777"};
-	int argc2 = 3;
-	char *argv2[] = {"./client","0.0.0.0","7777"};
-	int r = 0;
+    int argc2 = 4;
+    char *argv2[] = {"./server","0.0.0.0","7777"};
+    int r = 0;
     if((argc2 == 4) & (strstr(argv2[0],SERVIDOR) != NULL)){
-    	servidor_ejecutar(argc, argv);
+    	servidor_execute(argc, argv);
     }else if((argc2 == 3) & (strstr(argv2[0],CLIENTE) != NULL)){
-     	cliente_ejecuar(argc, argv);
+     	cliente_execute(argc, argv);
     }else{
     	return r;
     }

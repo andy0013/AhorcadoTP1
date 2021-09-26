@@ -12,15 +12,16 @@
 #include <string.h>
 #include <wchar.h>
 #include "socket.h"
+#include "protocolo.h"
 
 #define EXITO 0
 #define ERROR 1
 
 typedef struct {
-      socket_t skt;
+      protocolo_t *protocolo;
 } cliente;
 
-int cliente_ejecuar(int argc, char *argv[]);
+int cliente_execute(int argc, char *argv[]);
 
 int cliente_inicio(cliente *servidor_creado, char *port);
 

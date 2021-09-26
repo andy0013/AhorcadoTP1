@@ -10,16 +10,18 @@
 #include "consola.h"
 #include "juego_ahorcado.h"
 #include "socket.h"
+#include "protocolo.h"
 
 #define EXITO 0
 #define ERROR 1
 
 
 typedef struct {
-      socket_t skt;
+//      socket_t skt;
+      protocolo_t *procolo;
 } servidor;
 
-int servidor_ejecutar(int argc, char *argv[]);
+int servidor_execute(int argc, char *argv[]);
 
 int servidor_inicio(servidor *servidor_creado, char *port);
 

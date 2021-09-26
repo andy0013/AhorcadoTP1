@@ -8,7 +8,7 @@
 #include "cliente.h"
 
 
-int cliente_ejecuar(int argc, char *argv[]){
+int cliente_execute(int argc, char *argv[]){
 	cliente servidor_conectado;
 	if (cliente_inicio(&servidor_conectado, argv[1])==1)return ERROR;
 	cliente_comunicacion(&servidor_conectado,/*argv[2]*/"7777");
@@ -18,36 +18,36 @@ int cliente_ejecuar(int argc, char *argv[]){
 
 int cliente_inicio(cliente *servidor_creado, char *port){
 
-	socket_t skt;
+	protocolo_t *protocolo  = malloc(sizeof(protocolo_t));
 
-	servidor_creado->skt;
+	protocolo_inicio_cliente(protocolo,"0.0.0.0", "7777");
 
-	socket_init(&servidor_creado->skt);
-
-	socket_connect(&servidor_creado->skt, "0.0.0.0", "7777");
+	servidor_creado->protocolo = protocolo;
 
 	return EXITO;
 }
 
 
+
 void cliente_comunicacion(cliente *servidor_creado, char *argumento_path_archivo){
 	int enviar_datos = 1;
-	char buffer[18] = {};
 	char *input;
 	size_t size_bytes = 0;
-	while (enviar_datos) {
-		char *buffer = (char *) malloc (18*sizeof(char));
-		socket_receive(&servidor_creado->skt, buffer, 18);
-		printf("%s\n",buffer);
-		if(getline(&input,&size_bytes,stdin)== (-1))break;
+	while(enviar_datos){
+		printf("%s","Ingrese una letra:");
+		getline(&input,&size_bytes,stdin);
 		for(int i = 0 ; i < (strlen(input)) ; i++ ){
 			char letra;
 			letra = input[i];
-			socket_send(&servidor_creado->skt,&letra , 1);
+			protocolo_enviar_mensaje_a_servidor(servidor_creado->protocolo,1,&letra);
 			if(letra == '\n') break;
-			char word[4] = {};
-			socket_receive(&servidor_creado->skt, word, 4);
-			printf("%s\n",word);
+			char datos_partida;
+			int datos_partida_longitud;
+			protocolo_recibir_datos_partida_servidor(servidor_creado->protocolo,&datos_partida);
+			protocolo_recibir_datos_longitud_palabra_servidor(servidor_creado->protocolo,&datos_partida_longitud);
+			char palabra_user[datos_partida_longitud];
+			protocolo_recibir_datos_palabra_servidor(servidor_creado->protocolo,&palabra_user,&datos_partida_longitud);
+			printf("%s\n",palabra_user);
 		}
 	}
 }

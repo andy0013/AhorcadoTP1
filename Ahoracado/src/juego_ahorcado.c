@@ -49,9 +49,11 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 		palabra_detectar_char_y_modificar_datos(&instancia_de_juego->palabra_leida,input_user,&instancia_de_juego->intentosDisponibles);
 
-		consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,instancia_de_juego->palabra_leida.palabra_en_juego);
+		consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,instancia_de_juego->palabra_leida.palabra_en_juego,&instancia_de_juego->intentosDisponibles);
 
 		if(palabras_leidas_e_construidas_son_iguales(&instancia_de_juego->palabra_leida)) {
+
+			protocolo_aceptar_cliente(instancia_de_juego->consola_user_servidor->servidor_a_user);
 
 			consola_user_adivino_la_palabra(instancia_de_juego->consola_user_servidor);
 

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "socket.h"
+#include "protocolo.h"
 
 typedef struct {
 
@@ -20,18 +21,18 @@ typedef struct {
 
 	int posicion_letra_leida;
 
-	socket_t *servidor_a_user;
+	protocolo_t *servidor_a_user;
 
 } consola;
 
 
-void consola_inicio(consola *instancia_de_consola, socket_t *servidor_a_user);
+void consola_inicio(consola *instancia_de_consola, protocolo_t *servidor_a_user);
 
 void consola_obtener_input_user(consola *instancia_de_consola, char *char_user);
 
 void consola_obtener_input_siguiente_user(consola *instancia_de_consola,char *char_user);
 
-void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual);
+void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual, int *intentos);
 
 void consola_mensaje_final_del_juego(int cantidad_ganadas, int cantidad_perdidas);
 
