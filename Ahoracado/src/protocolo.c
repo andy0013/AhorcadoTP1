@@ -39,7 +39,7 @@ void protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,const char *h
 
 void protocolo_aceptar_cliente(protocolo_t *instancia_de_protocolo){
 
-	if(instancia_de_protocolo->skt_cliente != NULL){
+	if(instancia_de_protocolo->skt_cliente == NULL){
 
 		socket_t *skt_cliente_conectado = malloc(sizeof(socket_t));
 
