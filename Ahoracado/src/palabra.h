@@ -8,6 +8,10 @@
 #ifndef PALABRA_H_
 #define PALABRA_H_
 
+#include <stdio.h>
+#include <string.h>
+
+
 typedef struct {
 	int cantidad_de_letras;
 	int longitud;

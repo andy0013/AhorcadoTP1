@@ -43,28 +43,64 @@ int palabras_leidas_e_construidas_son_iguales(palabra *palabra_en_uso){
 
 }
 
+int el_caracter_propuesto_fue_propuesto_previamente(palabra *palabra_en_uso,char leido){
 
-void palabra_detectar_char_y_modificar_datos(palabra *palabra_en_uso,char leido,int *intentos){
+	int fue_propuesto_previamente = 0;
+
+		char caracter_leido;
+
+		for(int i = 0 ; i < palabra_en_uso->longitud ; i++ ){
+
+			caracter_leido = palabra_en_uso->palabra_en_juego[i];
+
+			if((caracter_leido == leido)){
+
+				fue_propuesto_previamente = 1;
+			}
+
+		}
+
+		return fue_propuesto_previamente;
+
+}
+
+int modificar_palabra_en_uso(palabra *palabra_en_uso,char leido){
+
+	int modificamos_palabra_en_juego = 0;
 
 	char caracter_leido;
-
-	int user_fallo = 1;
 
 	for(int i = 0 ; i < palabra_en_uso->longitud ; i++ ){
 
 		caracter_leido = palabra_en_uso->palabra_leida[i];
 
-		if(caracter_leido == leido){
+		if((caracter_leido == leido)){
 
 			palabra_en_uso->palabra_en_juego[i] = leido;
 
-			user_fallo = 0;
-
+			modificamos_palabra_en_juego = 1;
 		}
 
 	}
 
-	if(user_fallo){
+	return modificamos_palabra_en_juego;
+}
+
+void palabra_detectar_char_y_modificar_datos(palabra *palabra_en_uso,char caracter_propuesto,int *intentos){
+
+	int acerto_letra_propuesta = 0;
+
+	if(el_caracter_propuesto_fue_propuesto_previamente(palabra_en_uso,caracter_propuesto)){
+
+		acerto_letra_propuesta = 0;
+
+	} else {
+
+		acerto_letra_propuesta = modificar_palabra_en_uso(palabra_en_uso, caracter_propuesto);
+
+	}
+
+	if(!acerto_letra_propuesta){
 
 		*intentos = *intentos - 1;
 
