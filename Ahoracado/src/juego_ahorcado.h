@@ -14,7 +14,8 @@
 #define JUEGO_AHORCADO_H_
 
 typedef struct {
-	int intentosDisponibles;
+	int intentos_juego;
+	int intentos_disponibles;
 	lector_de_archivo archivo;
 	consola *consola_user_servidor;
 	palabra palabra_leida;
@@ -23,7 +24,7 @@ typedef struct {
 } juego;
 
 
-void juego_inicio(juego *instancia_de_juego, consola *cliente_user_servidor);
+void juego_inicio(juego *instancia_de_juego, consola *cliente_user_servidor, int intentos_juego);
 
 void juego_levantar_dato(juego *instancia_de_juego,char *argumento_path_archivo);
 

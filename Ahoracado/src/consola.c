@@ -74,9 +74,9 @@ void consola_obtener_input_siguiente_user(consola *instancia_de_consola,char *ch
 	}
 }
 
-void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual, int *intentos){
+void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual, int *intentos,int flag_estado){
 
-	protocolo_enviar_mensaje_a_cliente(instancia_de_consola->servidor_a_user, intentos, palabra_actual);
+	protocolo_enviar_mensaje_a_cliente(instancia_de_consola->servidor_a_user, intentos, palabra_actual, flag_estado);
 
 
 }

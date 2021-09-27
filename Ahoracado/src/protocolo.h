@@ -27,7 +27,7 @@ void protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,const char *h
 
 void protocolo_aceptar_cliente(protocolo_t *instancia_de_protocolo);
 
-void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo, int *intentos,char *palabra_actual);
+void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo, int *intentos,char *palabra_actual, int flag_estado);
 
 void protocolo_recibir_mensaje_de_cliente(protocolo_t *instancia_de_protocolo, char *input);
 

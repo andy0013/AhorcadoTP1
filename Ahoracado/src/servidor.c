@@ -38,17 +38,13 @@ void servidor_comunicacion(servidor *servidor_creado, char *argumento_path_archi
 
 	consola_inicio(&jugador, servidor_creado->procolo);
 
-	juego_inicio(&juego_ahorcado,&jugador);
+	juego_inicio(&juego_ahorcado,&jugador,5);
 
 	juego_levantar_dato(&juego_ahorcado,/*argumento_path_archivo*/ "words.txt");
 
 	juego_preparar_ahorcado(&juego_ahorcado);
 
-	while(1){
-
-		juego_ejecutar(&juego_ahorcado);
-
-	}
+	juego_ejecutar(&juego_ahorcado);
 
 }
 

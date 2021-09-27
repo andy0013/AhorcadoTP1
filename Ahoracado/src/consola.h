@@ -36,8 +36,7 @@ void consola_conectar_usuario_de_ser_necesario(consola *instancia_de_consola);
 
 void consola_finalizar_partida_cliente_actual(consola *instancia_de_consola);
 
-
-void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual, int *intentos);
+void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual, int *intentos,int flag_estado);
 
 void consola_mensaje_final_del_juego(int cantidad_ganadas, int cantidad_perdidas);
 
