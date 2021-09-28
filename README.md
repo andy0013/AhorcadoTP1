@@ -103,8 +103,9 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
   
   La solucion a este problema estaba en el informe, y es que gracias al uso de Netcat, mediante Netcat, me era posible conectarme al servidor que levantaba desde Sockets, y ahi recien avanzaba en la solicitud (en modo debbug), posteriormente, tambien me era posible recibir informacion. Tambien pude utilizar este metodo viceversa para probar los envios del cliente a un servidor levantado.
 
+
  
-![valgrind](imagenes/ErroresValgrind.png)
+![valgrind](imagenes/ErroresValgrind.PNG)
  
-![valgrind](imagenes/ErroresValgrind2.png)
+![valgrind](imagenes/ErroresValgrind2.PNG)
  
