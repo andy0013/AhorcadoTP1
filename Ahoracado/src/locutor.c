@@ -43,12 +43,16 @@ void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo){
 
 int locutor_termino_el_juego_ganamos(locutor *locutor){
 
-	if(strstr(locutor->palabra,"_") == NULL){
+	if((strstr(locutor->palabra,"_") == NULL) & (locutor->intentos_usuario > 0)){
 		printf("Ganaste!");
 		locutor->termino_la_partida = 1;
+		return locutor->termino_la_partida;
+	} else{
+
+		return 0;
+
 	}
 
-	return locutor->termino_la_partida;
 
 }
 
