@@ -12,16 +12,14 @@
 #include "protocolo.h"
 #include "locutor.h"
 
-
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
-
 
 #define EXITO 0
 #define ERROR 1
 
 typedef struct {
-      protocolo_t *protocolo;
+	protocolo_t *protocolo;
 } cliente;
 
 /*
@@ -50,7 +48,5 @@ void cliente_comunicacion(cliente *servidor_creado);
  * Libera los recursos solicitados en el TDA.
  */
 void cliente_fin(cliente *servidor_creado);
-
-
 
 #endif /* SRC_CLIENTE_H_ */

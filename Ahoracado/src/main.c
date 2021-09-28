@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 		r = servidor_ejecutar(argc, argv);
 	} else if ((argc == 3) && (strstr(argv[0], CLIENTE) != NULL)) {
 		r = cliente_ejectuar(argc, argv);
-	} else {
-		return r;
 	}
+	return r;
 }
+

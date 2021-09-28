@@ -25,8 +25,7 @@ int cliente_inicio(cliente *servidor_conectado, char *host, char *port) {
 
 	protocolo_t *protocolo = malloc(sizeof(protocolo_t));
 
-	int cliente_desconectado = protocolo_inicio_cliente(protocolo, host,
-			port);
+	int cliente_desconectado = protocolo_inicio_cliente(protocolo, host, port);
 
 	servidor_conectado->protocolo = protocolo;
 

@@ -10,20 +10,17 @@
 #include <wchar.h>
 #include "protocolo.h"
 
-
 #ifndef LOCUTOR_H_
 #define LOCUTOR_H_
 
-
 typedef struct {
-      char *palabra;
-      char *input_user;
-      int intentos_usuario;
-      int longitud_palabra;
-      int termino_la_partida;
-      int posicion_de_letra_enviada;
+	char *palabra;
+	char *input_user;
+	int intentos_usuario;
+	int longitud_palabra;
+	int termino_la_partida;
+	int posicion_de_letra_enviada;
 } locutor;
-
 
 /*
  * Incializa las variables que queremos guardar valores, para imprimir luego
@@ -57,7 +54,8 @@ void locutor_imprimir_informacon_recibida(locutor *locutor);
  * Junto con funciones no accesibles desde afuera del TDA, se ocupa de la logica para cuando el usuario
  * ingresa mas de una letra, y las envia correctamente, de a 1.
  */
-void locutor_solicitar_y_enviar_letra_del_input_user(locutor *locutor, protocolo_t *protocolo);
+void locutor_solicitar_y_enviar_letra_del_input_user(locutor *locutor,
+		protocolo_t *protocolo);
 
 /*
  * Retorna 1 si termino el juego, por GANAR.

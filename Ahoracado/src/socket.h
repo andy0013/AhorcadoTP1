@@ -9,25 +9,21 @@
 #include <netdb.h>
 #include <unistd.h>
 
-
 #define FAMILY AF_INET
 #define SOCK_TYPE SOCK_STREAM
 #define CLIENT_FLAGS 0
 #define SERVER_FLAGS AI_PASSIVE
 
-
-
 typedef struct {
-    int fd;
+	int fd;
 } socket_t;
 
 void socket_init(socket_t *self);
 
 void socket_uninit(socket_t *self);
 
-int socket_bind_and_listen(socket_t *self,
-                            const char *host,
-                            const char *service);
+int socket_bind_and_listen(socket_t *self, const char *host,
+		const char *service);
 
 void socket_accept(socket_t *listener, socket_t *peer);
 

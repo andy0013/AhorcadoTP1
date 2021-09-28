@@ -6,7 +6,6 @@
  */
 #include "servidor.h"
 
-
 #ifndef SERVIDOR_C_
 #define SERVIDOR_C_
 
@@ -16,9 +15,9 @@ int servidor_ejecutar(int argc, char *argv[]) {
 	if (servidor_inicio(&servidor_levantado, argv[1]) != EXITO)
 		return ERROR;
 
-	int intentos = strtol(argv[2],NULL,10);
+	int intentos = strtol(argv[2], NULL, 10);
 
-	servidor_comunicacion(&servidor_levantado, &intentos ,argv[3]);
+	servidor_comunicacion(&servidor_levantado, &intentos, argv[3]);
 
 	servidor_fin(&servidor_levantado);
 
@@ -29,7 +28,8 @@ int servidor_inicio(servidor *servidor_creado, char *port) {
 
 	protocolo_t *protocolo = malloc(sizeof(protocolo_t));
 
-	int escuchando_sockets = protocolo_inicio_servidor(protocolo, "localhost", port);
+	int escuchando_sockets = protocolo_inicio_servidor(protocolo, "localhost",
+			port);
 
 	servidor_creado->procolo = protocolo;
 

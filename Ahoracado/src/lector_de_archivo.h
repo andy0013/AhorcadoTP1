@@ -9,7 +9,6 @@
 #include <string.h>
 #include <wchar.h>
 
-
 #ifndef LECTOR_DE_ARCHIVO_H_
 #define LECTOR_DE_ARCHIVO_H_
 
@@ -23,8 +22,7 @@ typedef struct {
  * Abre el archivo recibido como parametro en solo lectura.
  * Inicia las variables del TDA.
  */
-void archivo_inicio(lector_de_archivo *archivo,char *argumento_path_archivo);
-
+void archivo_inicio(lector_de_archivo *archivo, char *argumento_path_archivo);
 
 /*
  * Lee la primer linea. Utilizamos "Getline" como sugerencia del enunciado.
@@ -41,6 +39,5 @@ int linea_llego_al_final(lector_de_archivo *archivo);
  * Libera los recursos del TDA lector_de_archivo fclose().
  */
 void archivo_fin(lector_de_archivo *archivo);
-
 
 #endif /* LECTOR_DE_ARCHIVO_H_ */

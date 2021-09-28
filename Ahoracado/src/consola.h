@@ -40,7 +40,8 @@ void consola_obtener_input_user(consola *instancia_de_consola, char *char_user);
  * En caso de que el usuario nos envie mas de una letra.
  * Este metodo maneja la logica (Utilizado para probar en local, el juego a travez de stdin)
  */
-void consola_obtener_input_siguiente_user(consola *instancia_de_consola,char *char_user);
+void consola_obtener_input_siguiente_user(consola *instancia_de_consola,
+		char *char_user);
 
 /*
  * Se encarga de aceptar un nuevo cliente.
@@ -57,8 +58,8 @@ void consola_finalizar_partida_cliente_actual(consola *instancia_de_consola);
  * Envia al cliente, la palabra en sus distintos estados. EJ
  * "____" . "c___" . "ca_a" - "casa"
  */
-void consola_mensaje_palabra_actual(consola *instancia_de_consola,char *palabra_actual, int *intentos,int flag_estado);
-
+void consola_mensaje_palabra_actual(consola *instancia_de_consola,
+		char *palabra_actual, int *intentos, int flag_estado);
 
 /*
  * Libera los recursos del TDA consola.

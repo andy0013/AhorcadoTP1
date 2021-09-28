@@ -28,12 +28,14 @@ typedef struct {
  *  Recibe la consola para conectarse con el cliente.
  *  Y recibe los intentos cargados por argumento.
  */
-void juego_inicio(juego *instancia_de_juego, consola *cliente_user_servidor, int intentos_juego);
+void juego_inicio(juego *instancia_de_juego, consola *cliente_user_servidor,
+		int intentos_juego);
 
 /*
  * Hace inicio del archivo.
  */
-void juego_levantar_dato(juego *instancia_de_juego,char *argumento_path_archivo);
+void juego_levantar_dato(juego *instancia_de_juego,
+		char *argumento_path_archivo);
 
 /*
  * Prepara las variables del TDA.
@@ -52,6 +54,5 @@ void juego_ejecutar(juego *instancia_de_juego);
  * Libera los recursos solicitados en el TDA juego.
  */
 void juego_fin(juego *instancia_de_juego);
-
 
 #endif /* JUEGO_AHORCADO_H_ */
