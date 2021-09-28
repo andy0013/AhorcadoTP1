@@ -39,7 +39,14 @@ Un ejemplo seria cuando el Juego quiere saber si el usuario adivino la palabra e
 
 El Servidor fue desarrollado en un principio simplemente como la logica del Juego Ahorcado, en el cual era posible jugar por entrada standart. Posteriormente, se hizo la adicion del TDA Protocolo en el TDA consola,  que  es quien conoce la logica de envio de datos, y interactua con los Sockets.
 
-![modelo](imagenes/servidor_modelo.png)
+### Diagrama Secuencial
+
+![modelo](imagenes/servidor_modelo_ok.png)
+
+  En el diagrama podemos observar como se delegan las responsabilidades a cada distinto TDA, para el flujo del Juego, vemos que la secuencia inicial del juego se realiza en el Loop del juego, y la condicion de corte es cuando el Jugador Gana o Pierde.
+  Es importante recalcar que los metodos son ilustrativos, es decir, no tenemos un metodo que se encarga de "conectar_y_inercambiar_datos()", sino que representa a 2/3 metodos, en los cuales en cada uno se delega 1 responsabilidad. 
+  
+  *En "imagenes/servidor_modelo.png" encontramos el Diagrama de Secuencia sin estos metodos ilustrativos que sintetizan varias responsabilidades*
 
 ## Modelo Servidor
 
