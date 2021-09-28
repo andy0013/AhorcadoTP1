@@ -41,7 +41,7 @@ void juego_preparar_ahorcado(juego *instancia_de_juego){
 
 void juego_user_gano_partida(juego *instancia_de_juego){
 
-	consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,instancia_de_juego->palabra_leida.palabra_en_juego,&instancia_de_juego->intentos_disponibles,1);
+	consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,instancia_de_juego->palabra_leida.palabra_leida,&instancia_de_juego->intentos_disponibles,1);
 
 	juego_preparar_ahorcado((instancia_de_juego));
 
