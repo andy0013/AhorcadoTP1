@@ -9,7 +9,7 @@
 #define SRC_PROTOCOLO_C_
 #include "protocolo.h"
 
-void protocolo_inicio_cliente(protocolo_t *instancia_de_protocolo,const char *host, const char *port){
+int protocolo_inicio_cliente(protocolo_t *instancia_de_protocolo,const char *host, const char *port){
 
 	socket_t *skt = malloc(sizeof(socket_t));
 
@@ -17,9 +17,8 @@ void protocolo_inicio_cliente(protocolo_t *instancia_de_protocolo,const char *ho
 
 	socket_init(instancia_de_protocolo->skt_cliente);
 
-	socket_connect(instancia_de_protocolo->skt_cliente, host, port);
+	return socket_connect(instancia_de_protocolo->skt_cliente, host, port);
 
-//	instancia_de_protocolo
 }
 
 
@@ -61,40 +60,26 @@ void protocolo_aceptar_cliente(protocolo_t *instancia_de_protocolo){
 
 
 
-void parseo_ascii_a_char(char *buffer, size_t cantidad_letras){
 
-	for(int i = 0 ; i < cantidad_letras ; i++ ){
-
-		buffer[i] = (char) buffer[i];
-
-	}
-
-}
-
-void parseo_char_a_ascii(char *buffer, size_t cantidad_letras){
-
-	for(int i = 0 ; i < cantidad_letras ; i++ ){
-
-		buffer[i] = (long) buffer[i];
-
-	}
-
-}
-
-void mensaje_a_user(char *mensaje, char *output){
-
-
-
-}
-
-
-
-
-void protocolo_recibir_datos_partida_servidor(protocolo_t *instancia_de_protocolo,char *palabra_user){
+void protocolo_recibir_datos_partida_servidor(protocolo_t *instancia_de_protocolo,uint8_t *termino_la_partida, int *intentos){
 
 	uint8_t informacion_juego = malloc(sizeof(uint8_t));
 
+	*termino_la_partida = 0;
+
 	socket_receive(instancia_de_protocolo->skt_cliente, &informacion_juego, sizeof(uint8_t));
+
+	if(informacion_juego >= FLAG_DE_TERMINACION){
+
+		*termino_la_partida = 1;
+
+		*intentos = informacion_juego - FLAG_DE_TERMINACION;
+
+	}else{
+
+		*intentos = informacion_juego;
+
+	}
 
 }
 
@@ -104,9 +89,8 @@ void protocolo_recibir_datos_longitud_palabra_servidor(protocolo_t *instancia_de
 
 	socket_receive(instancia_de_protocolo->skt_cliente, &len_palabra, sizeof(uint16_t));
 
-	len_palabra = ntohs(len_palabra);
+	*palabra_user = ntohs(len_palabra);
 
-	memcpy(palabra_user,&len_palabra,2);
 }
 
 void protocolo_recibir_datos_palabra_servidor(protocolo_t *instancia_de_protocolo,char *palabra_user, int *len_palabra){
@@ -137,8 +121,6 @@ void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo, int
 void protocolo_recibir_mensaje_de_cliente(protocolo_t *instancia_de_protocolo, char *input){
 
 	socket_receive(instancia_de_protocolo->skt_cliente,input, 1);
-
-	parseo_ascii_a_char(input, 1);
 
 }
 

@@ -9,48 +9,55 @@
 
 
 int cliente_execute(int argc, char *argv[]){
+
 	cliente servidor_conectado;
-	if (cliente_inicio(&servidor_conectado, argv[1])==1)return ERROR;
+
+	if (cliente_inicio(&servidor_conectado, argv[1])!=EXITO)return ERROR;
+
 	cliente_comunicacion(&servidor_conectado,/*argv[2]*/"7777");
+
 	return EXITO;
 }
 
 
-int cliente_inicio(cliente *servidor_creado, char *port){
+int cliente_inicio(cliente *servidor_conectado, char *port){
 
 	protocolo_t *protocolo  = malloc(sizeof(protocolo_t));
+	
+	int cliente_desconectado = 	protocolo_inicio_cliente(protocolo,"0.0.0.0", "7777");
 
-	protocolo_inicio_cliente(protocolo,"0.0.0.0", "7777");
+	servidor_conectado->protocolo = protocolo;
 
-	servidor_creado->protocolo = protocolo;
-
-	return EXITO;
+	return cliente_desconectado;
 }
 
 
 
-void cliente_comunicacion(cliente *servidor_creado, char *argumento_path_archivo){
-	int enviar_datos = 1;
-	char *input;
-	size_t size_bytes = 0;
-	while(enviar_datos){
-		printf("%s","Ingrese una letra:");
-		getline(&input,&size_bytes,stdin);
-		for(int i = 0 ; i < (strlen(input)) ; i++ ){
-			char letra;
-			letra = input[i];
-			protocolo_enviar_mensaje_a_servidor(servidor_creado->protocolo,1,&letra);
-			if(letra == '\n') break;
-			char datos_partida;
-			int datos_partida_longitud;
-			protocolo_recibir_datos_partida_servidor(servidor_creado->protocolo,&datos_partida);
-			protocolo_recibir_datos_longitud_palabra_servidor(servidor_creado->protocolo,&datos_partida_longitud);
-			char palabra_user[datos_partida_longitud];
-			protocolo_recibir_datos_palabra_servidor(servidor_creado->protocolo,&palabra_user,&datos_partida_longitud);
-			printf("%s\n",palabra_user);
-		}
+void cliente_comunicacion(cliente *servidor_conectado, char *argumento_path_archivo){
+
+	locutor locutor_de_la_partida;
+
+	locutor_inicio(&locutor_de_la_partida);
+
+	int juego_en_curso = 1;
+
+	while(juego_en_curso){
+
+		locutor_preparar_atributos_de_partida(&locutor_de_la_partida);
+
+		locutor_recibir_y_actualizar(&locutor_de_la_partida, servidor_conectado->protocolo);
+
+		if (locutor_termino_el_juego_ganamos(&locutor_de_la_partida))break;
+
+		if (locutor_termino_el_juego_perdimos(&locutor_de_la_partida))break;
+
+		locutor_imprimir_informacon_recibida(&locutor_de_la_partida);
+
+		locutor_solicitar_y_enviar_letra_del_input_user(&locutor_de_la_partida, servidor_conectado->protocolo);
+
 	}
 }
+
 
 
 

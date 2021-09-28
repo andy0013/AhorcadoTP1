@@ -11,8 +11,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-#include "socket.h"
 #include "protocolo.h"
+#include "locutor.h"
+
 
 #define EXITO 0
 #define ERROR 1

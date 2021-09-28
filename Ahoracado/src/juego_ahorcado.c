@@ -75,7 +75,7 @@ void juego_ejecutar(juego *instancia_de_juego){
 
 		consola_obtener_input_user(instancia_de_juego->consola_user_servidor, &input_user);
 
-		palabra_detectar_char_y_modificar_datos(&instancia_de_juego->palabra_leida,input_user,&instancia_de_juego->intentos_disponibles);
+		palabra_revisar_caracter_y_intentos(&instancia_de_juego->palabra_leida,input_user,&instancia_de_juego->intentos_disponibles);
 
 		if(palabras_leidas_e_construidas_son_iguales(&instancia_de_juego->palabra_leida)) {
 

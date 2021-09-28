@@ -86,7 +86,7 @@ int modificar_palabra_en_uso(palabra *palabra_en_uso,char leido){
 	return modificamos_palabra_en_juego;
 }
 
-void palabra_detectar_char_y_modificar_datos(palabra *palabra_en_uso,char caracter_propuesto,int *intentos){
+void palabra_revisar_caracter_y_intentos(palabra *palabra_en_uso,char caracter_propuesto,int *intentos){
 
 	int acerto_letra_propuesta = 0;
 
