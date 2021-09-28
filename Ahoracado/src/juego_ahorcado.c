@@ -87,13 +87,19 @@ void juego_ejecutar(juego *instancia_de_juego){
 			juego_user_perdio_partida(instancia_de_juego);
 
 		}
+
 	}
 
 }
 
 
-void juego_fin(){
+void juego_fin(juego *instancia_de_juego){
 
+	palabra_fin(&instancia_de_juego->palabra_leida);
+
+	archivo_fin(&instancia_de_juego->archivo);
+
+	consola_fin(instancia_de_juego->consola_user_servidor);
 
 }
 

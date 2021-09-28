@@ -16,6 +16,8 @@ int cliente_execute(int argc, char *argv[]){
 
 	cliente_comunicacion(&servidor_conectado,/*argv[2]*/"7777");
 
+	cliente_fin(&servidor_conectado);
+
 	return EXITO;
 }
 
@@ -62,6 +64,10 @@ void cliente_comunicacion(cliente *servidor_conectado, char *argumento_path_arch
 
 
 void cliente_fin(cliente *servidor_creado){
+
+	protocolo_fin_cliente(servidor_creado->protocolo);
+
+	free(servidor_creado->protocolo);
 
 }
 

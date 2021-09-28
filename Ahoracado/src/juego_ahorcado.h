@@ -23,16 +23,35 @@ typedef struct {
 	int veces_que_perdio;
 } juego;
 
-
+/*
+ *  Inicia las variables del TDA juego.
+ *  Recibe la consola para conectarse con el cliente.
+ *  Y recibe los intentos cargados por argumento.
+ */
 void juego_inicio(juego *instancia_de_juego, consola *cliente_user_servidor, int intentos_juego);
 
+/*
+ * Hace inicio del archivo.
+ */
 void juego_levantar_dato(juego *instancia_de_juego,char *argumento_path_archivo);
 
+/*
+ * Prepara las variables del TDA.
+ * Para una ejecucion del juego.
+ * (Lee el archivo, carga la palabra.)
+ */
 void juego_preparar_ahorcado(juego *instancia_de_juego);
 
+/*
+ * Haciendo uso de las variables del TDA.
+ * Maneja la logica del juego. Conectar User - Perdir palabra - Moficar valores..
+ */
 void juego_ejecutar(juego *instancia_de_juego);
 
-void juego_fin();
+/*
+ * Libera los recursos solicitados en el TDA juego.
+ */
+void juego_fin(juego *instancia_de_juego);
 
 
 #endif /* JUEGO_AHORCADO_H_ */

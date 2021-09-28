@@ -108,5 +108,10 @@ void palabra_revisar_caracter_y_intentos(palabra *palabra_en_uso,char caracter_p
 
 }
 
+void palabra_fin(palabra *palabra_en_uso){
+
+	free(palabra_en_uso->palabra_en_juego);
+
+}
 
 

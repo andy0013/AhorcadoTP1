@@ -70,7 +70,8 @@ int socket_bind_and_listen(socket_t *self,
 			return 1;
 		}
 	}
-	return 0;
+
+	return connection;
 }
 
 

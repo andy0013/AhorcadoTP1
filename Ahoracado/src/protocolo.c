@@ -22,7 +22,7 @@ int protocolo_inicio_cliente(protocolo_t *instancia_de_protocolo,const char *hos
 }
 
 
-void protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,const char *host, const char *port){
+int protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,const char *host, const char *port){
 
 	socket_t *skt = malloc(sizeof(socket_t));
 
@@ -32,7 +32,7 @@ void protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,const char *h
 
 	socket_init(instancia_de_protocolo->skt_server);
 
-	socket_bind_and_listen(instancia_de_protocolo->skt_server, NULL, port );
+	return socket_bind_and_listen(instancia_de_protocolo->skt_server, NULL, port );
 
 }
 
@@ -129,6 +129,15 @@ void protocolo_enviar_mensaje_a_servidor(protocolo_t *instancia_de_protocolo,siz
 
 	socket_send(instancia_de_protocolo->skt_cliente, buffer, 1/*strlen(letras_enviadas)*/);
 
+}
+
+void protocolo_fin_cliente(protocolo_t *instancia_de_protocolo){
+	socket_uninit(instancia_de_protocolo->skt_server);
+}
+
+void protocolo_fin_servicio(protocolo_t *instancia_de_protocolo){
+	socket_uninit(instancia_de_protocolo->skt_server);
+	socket_uninit(instancia_de_protocolo->skt_cliente);
 }
 
 

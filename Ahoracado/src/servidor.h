@@ -17,16 +17,35 @@
 
 
 typedef struct {
-//      socket_t skt;
       protocolo_t *procolo;
 } servidor;
 
+/*
+ * Ejecuta el flujo de iniciar el servidor.
+ * una vez bindeado, queda escuchando a sockets.
+ * Ejecuta la comunicacion, donde esta el flujo del juego.
+ * Finalizar la comunicacion.
+ * Retorna: 1 en caso de ERROR, 0 en caso de EXITO.
+ */
 int servidor_execute(int argc, char *argv[]);
 
+/*
+ * Inicia el protocolo de nuestro TDA.
+ * Retorna: 0 en caso de EXITO, 1 en caso de error.
+ */
 int servidor_inicio(servidor *servidor_creado, char *port);
 
+/*
+ * Se ocupa de comunicarse con el usuario, en el juego.
+ * Inicia el TDA Juego ahorcado, que se ocupa del flujo de la partida, y
+ * Consola que se ocupa de la comunicacion con el cliente.
+ * Y de solicitar valores al usuario.
+ */
 void servidor_comunicacion(servidor *servidor_creado,char *argumento_path_archivo);
 
+/*
+ * Libera los recursos solicitados en el TDA.
+ */
 void servidor_fin(servidor *servidor_creado);
 
 #endif /* SRC_SERVIDOR_H_ */
