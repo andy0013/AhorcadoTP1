@@ -108,11 +108,11 @@ void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo, int
 	uint8_t estado_juego = *intentos;
 	uint8_t flag = 127;
 	uint16_t len = strlen(palabra_actual);
-	uint16_t len_buf = htons(len);
 	if(flag_estado){
 		estado_juego = estado_juego + flag;
 		len = len - 1;
 	}
+	uint16_t len_buf = htons(len);
     socket_send(instancia_de_protocolo->skt_cliente, &estado_juego, sizeof(uint8_t));
 	socket_send(instancia_de_protocolo->skt_cliente, &len_buf, sizeof(uint16_t));
     socket_send(instancia_de_protocolo->skt_cliente, palabra_actual, len);
