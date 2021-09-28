@@ -133,7 +133,8 @@ void protocolo_enviar_mensaje_a_servidor(protocolo_t *instancia_de_protocolo,siz
 }
 
 void protocolo_fin_cliente(protocolo_t *instancia_de_protocolo){
-	socket_uninit(instancia_de_protocolo->skt_server);
+	socket_uninit(instancia_de_protocolo->skt_cliente);
+	free(instancia_de_protocolo->skt_cliente);
 }
 
 void protocolo_fin_servicio(protocolo_t *instancia_de_protocolo){
