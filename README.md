@@ -30,9 +30,9 @@ Por otro lado, tenemos el Cliente, que hace uso del Locutor que ordena la logica
 La logica de aceptar un cliente se utiliza en el TDA Juego, de forma de que el TDA Juego es aquel que sabe cuando necesita conectar con un cliente, y seguir la secuencia del juego del ahorcado.
 Asi mismo, el servidor, hace uso de distintos TDAS para completar el flujo del ahorcado:
 
---Consola
---Lector_de_archivo
---Palabra
+      -- Consola
+      -- Lector_de_archivo
+      -- Palabra
 
 Estos TDA se ocupan en parte cada uno de su propia funcionalidad, de forma de que el TDA Juego, en ningun momento debe manipular informacion que no le pertenece, respetando el encapsulamiento. 
 Un ejemplo seria cuando el Juego quiere saber si el usuario adivino la palabra en cuestion, para esto, le pregunta al TDA Palabra, si la palabra fue adivinada.
@@ -76,8 +76,10 @@ De esta forma, el cliente simplemente se ocupa de organizar las directivas del l
 ## Lenguaje 
 
   El lenguaje utilizado es una cuestion no menor al hablar del desarrollo del juego, en un principio, opte por iniciar con la logica del juego del ahorcado para familiarizarme con el uso de punteros, direcciones de memoria, reserva de memoria.
+  
   Durante el desarrollo hubo que invertir una gran cantidad de tiempo debbugeando el proyecto para entender situaciones anomalas por no mala manipulacion de memoria en el juego.
--- Un ejemplo interesante, es que en un momento, cuando arranque con la integracion de los Sockets, con el Juego funcionando correctamente con sus respectivos modulos y entradas STDIN. Debido al error de no reservar memoria para algunas variables, al entrar en un Loop; en el cual se solicita letra al user, carga letra en la palabra actual, etc. Cada vez que volvia a iniciar el Loop los valores de distintos TDAs se perdian, se volvian valores nulos. 
+
+Un ejemplo interesante, es que en un momento, cuando arranque con la integracion de los Sockets, con el Juego funcionando correctamente con sus respectivos modulos y entradas STDIN. Debido al error de no reservar memoria para algunas variables, al entrar en un Loop; en el cual se solicita letra al user, carga letra en la palabra actual, etc. Cada vez que volvia a iniciar el Loop los valores de distintos TDAs se perdian, se volvian valores nulos. 
   A pesar de tener esa valiosa informacion, ya que reconociamos en todo momento DONDE estaba o no la informacion, y CUANDO se volvian nulos, fue dificil hallar y corregir la falla. 
 
 ## Conexion
@@ -89,7 +91,9 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
 
   Volviendo al problema que se me presento con el Servidor - Cliente, fue cuando en un principio desarrolle las funciones para que el Socket pueda recibir informacion, una vez finalizado ese desarrollo, queria probarlo, debia probarlo, no podia seguir desarrollando si no sabia si esa conexion estaba correctamente hecha, y podia intercambiar datos.
   Sin embargo, desconocia como realizar esta prueba. 
+  
 ¿Debia levantar un proyecto como cliente?, ¿Debia si o si crear el socket de envio para probar el de recepcion?.
+  
   La solucion a este problema estaba en el informe, y es que gracias al uso de Netcat, mediante Netcat, me era posible conectarme al servidor que levantaba desde Sockets, y ahi recien avanzaba en la solicitud (en modo debbug), posteriormente, tambien me era posible recibir informacion. Tambien pude utilizar este metodo viceversa para probar los envios del cliente a un servidor levantado.
 
  
