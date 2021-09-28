@@ -5,15 +5,16 @@
  *      Author: andres
  */
 
-#ifndef SRC_CLIENTE_H_
-#define SRC_CLIENTE_H_
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
 #include "protocolo.h"
 #include "locutor.h"
+
+
+#ifndef CLIENTE_H_
+#define CLIENTE_H_
 
 
 #define EXITO 0
@@ -30,13 +31,13 @@ typedef struct {
  * Finalizar la comunicacion.
  * Retorna: 1 en caso de ERROR, 0 en caso de EXITO.
  */
-int cliente_execute(int argc, char *argv[]);
+int cliente_ejectuar(int argc, char *argv[]);
 
 /*
  * Inicia el protocolo de nuestro TDA.
  * Retorna: 0 en caso de EXITO, 1 en caso de error.
  */
-int cliente_inicio(cliente *servidor_creado, char *port);
+int cliente_inicio(cliente *servidor_creado, char *host, char *port);
 
 /*
  * Se ocupa de comunicarse con el usuario, en el juego.

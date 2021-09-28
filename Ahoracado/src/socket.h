@@ -10,7 +10,6 @@
 #include <unistd.h>
 
 
-#define _POSIX_C_SOURCE 200112L
 #define FAMILY AF_INET
 #define SOCK_TYPE SOCK_STREAM
 #define CLIENT_FLAGS 0

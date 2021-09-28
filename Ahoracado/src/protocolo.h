@@ -5,17 +5,17 @@
  *      Author: andres
  */
 
-#ifndef SRC_PROTOCOLO_H_
-#define SRC_PROTOCOLO_H_
-
-#define FLAG_DE_TERMINACION 127
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <wchar.h>
 #include "socket.h"
 
+
+#ifndef PROTOCOLO_H_
+#define PROTOCOLO_H_
+
+#define FLAG_DE_TERMINACION 127
 
 
 

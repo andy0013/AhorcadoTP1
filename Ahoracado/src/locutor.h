@@ -5,13 +5,14 @@
  *      Author: andres
  */
 
-#ifndef LOCUTOR_H_
-#define LOCUTOR_H_
-
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
 #include "protocolo.h"
+
+
+#ifndef LOCUTOR_H_
+#define LOCUTOR_H_
 
 
 typedef struct {

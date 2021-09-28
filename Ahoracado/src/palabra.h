@@ -14,7 +14,6 @@
 
 
 typedef struct {
-	int cantidad_de_letras;
 	int longitud;
 	char *palabra_leida;
 	char *palabra_en_juego;

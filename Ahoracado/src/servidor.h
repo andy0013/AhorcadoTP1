@@ -7,6 +7,11 @@
 
 #ifndef SERVIDOR_H_
 #define SERVIDOR_H_
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 #include "consola.h"
 #include "juego_ahorcado.h"
 #include "socket.h"
@@ -15,9 +20,8 @@
 #define EXITO 0
 #define ERROR 1
 
-
 typedef struct {
-      protocolo_t *procolo;
+	protocolo_t *procolo;
 } servidor;
 
 /*
@@ -27,7 +31,7 @@ typedef struct {
  * Finalizar la comunicacion.
  * Retorna: 1 en caso de ERROR, 0 en caso de EXITO.
  */
-int servidor_execute(int argc, char *argv[]);
+int servidor_ejecutar(int argc, char *argv[]);
 
 /*
  * Inicia el protocolo de nuestro TDA.
@@ -41,7 +45,8 @@ int servidor_inicio(servidor *servidor_creado, char *port);
  * Consola que se ocupa de la comunicacion con el cliente.
  * Y de solicitar valores al usuario.
  */
-void servidor_comunicacion(servidor *servidor_creado,char *argumento_path_archivo);
+void servidor_comunicacion(servidor *servidor_creado, int *intentos,
+		char *argumento_path_archivo);
 
 /*
  * Libera los recursos solicitados en el TDA.

@@ -123,3 +123,8 @@ void locutor_solicitar_y_enviar_letra_del_input_user(locutor *locutor, protocolo
 
 }
 
+void locutor_fin(locutor *locutor){
+
+}
+
+
