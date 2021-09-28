@@ -15,9 +15,9 @@
 
 int main(int argc, char *argv[]) {
 	int r = 0;
-	if ((argc == 4) && (strstr(SERVIDOR, SERVIDOR) != NULL)) {
+	if ((argc == 4) && (strstr(argv[0], SERVIDOR) != NULL)) {
 		r = servidor_ejecutar(argc, argv);
-	} else if ((argc == 3) && (strstr(SERVIDOR, CLIENTE) != NULL)) {
+	} else if ((argc == 3) && (strstr(argv[0], CLIENTE) != NULL)) {
 		r = cliente_ejectuar(argc, argv);
 	} else {
 		return r;
