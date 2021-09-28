@@ -44,7 +44,7 @@ int cliente_inicio(cliente *servidor_creado, char *host, char *port);
  * Inicia el TDA Locutor, que se ocupa del flujo de la partida.
  * Y de solicitar valores al usuario.
  */
-void cliente_comunicacion(cliente *servidor_creado, char *argumento_path_archivo);
+void cliente_comunicacion(cliente *servidor_creado);
 
 /*
  * Libera los recursos solicitados en el TDA.

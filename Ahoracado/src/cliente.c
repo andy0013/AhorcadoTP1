@@ -14,7 +14,7 @@ int cliente_ejectuar(int argc, char *argv[]) {
 	if (cliente_inicio(&servidor_conectado, argv[1], argv[2]) != EXITO)
 		return ERROR;
 
-	cliente_comunicacion(&servidor_conectado, argv[2]);
+	cliente_comunicacion(&servidor_conectado);
 
 	cliente_fin(&servidor_conectado);
 
@@ -33,8 +33,7 @@ int cliente_inicio(cliente *servidor_conectado, char *host, char *port) {
 	return cliente_desconectado;
 }
 
-void cliente_comunicacion(cliente *servidor_conectado,
-		char *argumento_path_archivo) {
+void cliente_comunicacion(cliente *servidor_conectado) {
 
 	locutor locutor_de_la_partida;
 

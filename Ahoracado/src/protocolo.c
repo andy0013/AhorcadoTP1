@@ -106,7 +106,7 @@ void protocolo_recibir_datos_palabra_servidor(protocolo_t *instancia_de_protocol
 
 void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo, int *intentos,  char *palabra_actual,int flag_estado){
 	uint8_t estado_juego = *intentos;
-	uint8_t flag = 128;
+	uint8_t flag = 127;
 	if(flag_estado){
 		estado_juego = estado_juego + flag;
 	}
