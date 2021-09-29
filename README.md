@@ -103,5 +103,17 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
   
   La solucion a este problema estaba en el informe, y es que gracias al uso de Netcat, mediante Netcat, me era posible conectarme al servidor que levantaba desde Sockets, y ahi recien avanzaba en la solicitud (en modo debbug), posteriormente, tambien me era posible recibir informacion. Tambien pude utilizar este metodo viceversa para probar los envios del cliente a un servidor levantado.
 
- 
+## Recepcion de argumentos
 
+ Otro problema con el que me costo lidiar, fue poder debuggear en mi entorno de trabajo el server, en un principio utilice "Hardcodeado" los valores de entrada para avanzar con el flujo, sin embargo, en la etapa final, si surge algun error por recibir mal un valor, o algun puntero mal enviado, es necesario correr ese ingreso en modo debugg. 
+ Esto se soluciono buscando en internet la forma de enviar argumentos al momento de correr el codigo, en mi caso es desde la configuracion de Eclipse.
+
+
+# FECHA DE ENTREGA 28/9
+
+  Se realizo una entrega el dia de la fecha, consciente de que fallaron las pruebas, y de que la memoria no se libero correctamente. Se tambien que no cumpli con el criterio de escritura de codigo. Agradezco la posibilidad de la catedra de brindarnos una correcion de lo que realizado, que no esta en perfectas condiciones. 
+
+![valgrind](imagenes/ErroresValgrind.PNG)
+ 
+![valgrind](imagenes/ErroresValgrind2.PNG)
+ 
