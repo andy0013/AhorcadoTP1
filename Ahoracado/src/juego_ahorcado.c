@@ -36,7 +36,6 @@ void juego_preparar_ahorcado(juego *instancia_de_juego) {
 
 	int longitudDePalabraPorAdivinarEnEsteIntento = (strlen(
 			instancia_de_juego->archivo.line) - 1);
-	palabra_fin(&instancia_de_juego->palabra_leida);
 
 	palabra_inicio(&instancia_de_juego->palabra_leida,
 			longitudDePalabraPorAdivinarEnEsteIntento,
