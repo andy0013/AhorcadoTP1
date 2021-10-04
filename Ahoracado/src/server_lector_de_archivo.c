@@ -15,7 +15,9 @@ void archivo_inicio(lector_de_archivo *archivo, char *argumento_path_archivo) {
 
 void leer_linea_archivo(lector_de_archivo *archivo) {
 
-	getline(&archivo->line, &archivo->lenLineaLeida, archivo->file);
+	if(getline(&archivo->line, &archivo->lenLineaLeida, archivo->file)==-1){
+		//	REFACTOR
+	}
 
 }
 

@@ -11,11 +11,11 @@
 void juego_inicio(juego *instancia_de_juego, consola *user_servidor,
 		int intentos_juego) {
 	instancia_de_juego->intentos_juego = intentos_juego;
-	lector_de_archivo palabras_por_descubrir;
-	instancia_de_juego->archivo = palabras_por_descubrir;
+//	lector_de_archivo palabras_por_descubrir;
+//	instancia_de_juego->archivo = palabras_por_descubrir;
 	instancia_de_juego->consola_user_servidor = user_servidor;
-	palabra palabra_leida;
-	instancia_de_juego->palabra_leida = palabra_leida;
+//	palabra palabra_leida;
+//	instancia_de_juego->palabra_leida = palabra_leida;
 	instancia_de_juego->veces_que_gano = 0;
 	instancia_de_juego->veces_que_perdio = 0;
 }
@@ -23,8 +23,11 @@ void juego_inicio(juego *instancia_de_juego, consola *user_servidor,
 void juego_levantar_dato(juego *instancia_de_juego,
 		char *argumento_path_archivo) {
 
-	archivo_inicio(&instancia_de_juego->archivo, argumento_path_archivo);
+	lector_de_archivo palabras_por_descubrir;
 
+	archivo_inicio(&palabras_por_descubrir, argumento_path_archivo);
+
+	instancia_de_juego->archivo = palabras_por_descubrir;
 }
 
 void juego_preparar_ahorcado(juego *instancia_de_juego) {
@@ -37,10 +40,13 @@ void juego_preparar_ahorcado(juego *instancia_de_juego) {
 	int longitudDePalabraPorAdivinarEnEsteIntento = (strlen(
 			instancia_de_juego->archivo.line) - 1);
 
-	palabra_inicio(&instancia_de_juego->palabra_leida,
+	palabra palabra_leida;
+
+	palabra_inicio(&palabra_leida,
 			longitudDePalabraPorAdivinarEnEsteIntento,
 			instancia_de_juego->archivo.line);
 
+	instancia_de_juego->palabra_leida = palabra_leida;
 }
 
 void juego_user_gano_partida(juego *instancia_de_juego) {
