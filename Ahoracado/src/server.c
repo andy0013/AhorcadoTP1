@@ -11,12 +11,12 @@
 
 #define SERVIDOR "server"
 #define CLIENTE "client"
-//
-//int main(int argc, char *argv[]) {
-//	int r = 0;
-//	if ((argc == 4) && (strstr(SERVIDOR, SERVIDOR) != NULL)) {
-//		r = servidor_ejecutar(argc, argv);
-//	}
-//	return r;
-//}
+
+int main(int argc, char *argv[]) {
+	int r = 0;
+	if ((argc == 4) && (strstr(SERVIDOR, SERVIDOR) != NULL)) {
+		r = servidor_ejecutar(argc, argv);
+	}
+	return r;
+}
 
