@@ -5,7 +5,7 @@
  *      Author: andres
  */
 
-#include "palabra.h"
+#include "server_palabra.h"
 
 void palabra_inicio(palabra *palabra_en_uso, int longitud
 		, char *palabra_leida) {

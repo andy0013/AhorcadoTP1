@@ -5,7 +5,7 @@
  *      Author: andres
  */
 
-#include "locutor.h"
+#include "client_locutor.h"
 
 void locutor_inicio(locutor *locutor) {
 
@@ -29,14 +29,14 @@ void locutor_preparar_atributos_de_partida(locutor *locutor) {
 void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo) {
 
 	protocolo_recibir_datos_partida_servidor(protocolo,
-			&locutor->termino_la_partida, &locutor->intentos_usuario);
+			(uint8_t*)&locutor->termino_la_partida, &locutor->intentos_usuario);
 
 	protocolo_recibir_datos_longitud_palabra_servidor(protocolo,
 			&locutor->longitud_palabra);
 
 	char palabra_de_partuda[locutor->longitud_palabra];
 
-	protocolo_recibir_datos_palabra_servidor(protocolo, &palabra_de_partuda,
+	protocolo_recibir_datos_palabra_servidor(protocolo, palabra_de_partuda,
 			&locutor->longitud_palabra);
 
 	locutor->palabra = palabra_de_partuda;
@@ -84,7 +84,9 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 
 		printf("%s", "Ingrese una letra:\n");
 
-		getline(&locutor->input_user, &size_bytes, stdin);
+		if(getline(&locutor->input_user, &size_bytes, stdin) == -1){
+			//ADD VALUE - CATCH TO REENTREGA
+		};
 
 		*letra_a_enviar =
 				locutor->input_user[locutor->posicion_de_letra_enviada];

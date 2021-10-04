@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <wchar.h>
-#include "socket.h"
+#include "common_socket.h"
 
 #ifndef PROTOCOLO_H_
 #define PROTOCOLO_H_

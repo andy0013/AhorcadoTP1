@@ -4,7 +4,7 @@
  *  Created on: 17 sep. 2021
  *      Author: andres
  */
-#include "lector_de_archivo.h"
+#include "server_lector_de_archivo.h"
 
 void archivo_inicio(lector_de_archivo *archivo, char *argumento_path_archivo) {
 	archivo->file = fopen("words.txt", "r");

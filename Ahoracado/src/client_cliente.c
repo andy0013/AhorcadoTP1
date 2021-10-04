@@ -5,7 +5,7 @@
  *      Author: andres
  */
 
-#include "cliente.h"
+#include "client_cliente.h"
 
 int cliente_ejectuar(int argc, char *argv[]) {
 

@@ -12,10 +12,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "consola.h"
-#include "juego_ahorcado.h"
-#include "socket.h"
-#include "protocolo.h"
+#include "server_consola.h"
+#include "server_juego_ahorcado.h"
+#include "common_socket.h"
+#include "common_protocolo.h"
 
 #define EXITO 0
 #define ERROR 1

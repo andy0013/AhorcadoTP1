@@ -4,7 +4,7 @@
  *  Created on: 22 sep. 2021
  *      Author: andres
  */
-#include "servidor.h"
+#include "server_servidor.h"
 
 #ifndef SERVIDOR_C_
 #define SERVIDOR_C_

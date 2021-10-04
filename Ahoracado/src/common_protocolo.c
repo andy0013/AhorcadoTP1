@@ -7,7 +7,7 @@
 
 #ifndef SRC_PROTOCOLO_C_
 #define SRC_PROTOCOLO_C_
-#include "protocolo.h"
+#include "common_protocolo.h"
 
 int protocolo_inicio_cliente(protocolo_t *instancia_de_protocolo,
 		const char *host, const char *port) {
@@ -64,22 +64,22 @@ void protocolo_recibir_datos_partida_servidor(
 		protocolo_t *instancia_de_protocolo, uint8_t *termino_la_partida,
 		int *intentos) {
 
-	uint8_t informacion_juego = malloc(sizeof(uint8_t));
+	uint8_t* informacion_juego = (uint8_t*)malloc(sizeof(uint8_t));
 
 	*termino_la_partida = 0;
 
-	socket_receive(instancia_de_protocolo->skt_cliente, &informacion_juego,
+	socket_receive(instancia_de_protocolo->skt_cliente, (char*)informacion_juego,
 			sizeof(uint8_t));
 
-	if (informacion_juego >= FLAG_DE_TERMINACION) {
+	if (*informacion_juego >= FLAG_DE_TERMINACION) {
 
 		*termino_la_partida = 1;
 
-		*intentos = informacion_juego - FLAG_DE_TERMINACION;
+		*intentos = *informacion_juego - FLAG_DE_TERMINACION;
 
 	} else {
 
-		*intentos = informacion_juego;
+		*intentos = *informacion_juego;
 
 	}
 
@@ -88,12 +88,12 @@ void protocolo_recibir_datos_partida_servidor(
 void protocolo_recibir_datos_longitud_palabra_servidor(
 		protocolo_t *instancia_de_protocolo, int *palabra_user) {
 
-	uint16_t len_palabra = malloc(sizeof(uint16_t));
+	uint16_t* len_palabra = (uint16_t *)malloc(sizeof(uint16_t));
 
-	socket_receive(instancia_de_protocolo->skt_cliente, &len_palabra,
+	socket_receive(instancia_de_protocolo->skt_cliente, (char*)len_palabra,
 			sizeof(uint16_t));
 
-	*palabra_user = ntohs(len_palabra);
+	*palabra_user = ntohs(*len_palabra);
 
 }
 
@@ -116,9 +116,9 @@ void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
 		len = len - 1;
 	}
 	uint16_t len_buf = htons(len);
-	socket_send(instancia_de_protocolo->skt_cliente, &estado_juego,
+	socket_send(instancia_de_protocolo->skt_cliente,(char*)&estado_juego,
 			sizeof(uint8_t));
-	socket_send(instancia_de_protocolo->skt_cliente, &len_buf,
+	socket_send(instancia_de_protocolo->skt_cliente, (char*)&len_buf,
 			sizeof(uint16_t));
 	socket_send(instancia_de_protocolo->skt_cliente, palabra_actual, len);
 

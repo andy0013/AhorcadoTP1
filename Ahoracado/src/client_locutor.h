@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-#include "protocolo.h"
+#include "common_protocolo.h"
 
 #ifndef LOCUTOR_H_
 #define LOCUTOR_H_
@@ -68,6 +68,8 @@ int locutor_termino_el_juego_ganamos(locutor *locutor);
  *Si ganamos, aunque haya terminado la partida, este metodo retorna 0;
  */
 int locutor_termino_el_juego_perdimos(locutor *locutor);
+
+void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra);
 
 /*
  *  Libera recursos pedidos en el TDA locutor.

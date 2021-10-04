@@ -5,7 +5,7 @@
  *      Author: andres
  */
 
-#include "juego_ahorcado.h"
+#include "server_juego_ahorcado.h"
 #include <string.h>
 
 void juego_inicio(juego *instancia_de_juego, consola *user_servidor,

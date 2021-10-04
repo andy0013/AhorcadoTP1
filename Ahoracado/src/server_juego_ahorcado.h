@@ -5,10 +5,10 @@
  *      Author: andres
  */
 
-#include "lector_de_archivo.h"
-#include "palabra.h"
+#include "server_lector_de_archivo.h"
+#include "server_palabra.h"
 #include <string.h>
-#include "consola.h"
+#include "server_consola.h"
 
 #ifndef JUEGO_AHORCADO_H_
 #define JUEGO_AHORCADO_H_

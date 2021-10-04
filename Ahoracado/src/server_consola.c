@@ -5,7 +5,7 @@
  *      Author: andres
  */
 
-#include "consola.h"
+#include "server_consola.h"
 
 void consola_inicio(consola *instancia_de_consola, protocolo_t *servidor_a_user) {
 
@@ -27,6 +27,7 @@ void consola_conectar_usuario_de_ser_necesario(consola *instancia_de_consola) {
 		protocolo_aceptar_cliente(instancia_de_consola->servidor_a_user);
 
 	}
+
 
 }
 

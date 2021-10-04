@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
-#include "protocolo.h"
-#include "locutor.h"
+#include "common_protocolo.h"
+#include "client_locutor.h"
 
 #ifndef CLIENTE_H_
 #define CLIENTE_H_

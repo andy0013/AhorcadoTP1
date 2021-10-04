@@ -5,13 +5,12 @@
  *      Author: andres
  */
 
-#ifndef CLIENTE_H_
-#define CLIENTE_H_
+#ifndef COLSOLA_H_
+#define COLSOLA_H_
 
 #include <stdio.h>
 #include <string.h>
-#include "socket.h"
-#include "protocolo.h"
+#include "common_protocolo.h"
 
 typedef struct {
 
