@@ -10,11 +10,11 @@
 #include "server_servidor.h"
 
 
-int main(int argc, char *argv[]) {
-	int r = 0;
-	if (argc == 4) {
-		r = servidor_ejecutar(argc, argv);
-	}
-	return r;
-}
-
+//int main(int argc, char *argv[]) {
+//	int r = 0;
+//	if (argc == 4) {
+//		r = servidor_ejecutar(argc, argv);
+//	}
+//	return r;
+//}
+//

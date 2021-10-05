@@ -93,9 +93,7 @@ int socket_connect(socket_t *self, const char *host, const char *service) {
 	self->fd = fd;
 	/* Finalmente, la **lista** de direcciones debe ser liberada */
 	freeaddrinfo(addr_result);
-
 	return connection;
-
 }
 
 ssize_t socket_send(socket_t *self, const char *buffer, size_t length) {

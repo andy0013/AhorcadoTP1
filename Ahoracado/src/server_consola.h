@@ -13,7 +13,6 @@
 #include "common_protocolo.h"
 
 typedef struct {
-
 	char *input;
 
 	int se_cargo_input;
@@ -21,23 +20,25 @@ typedef struct {
 	int posicion_letra_leida;
 
 	protocolo_t *servidor_a_user;
-
 } consola;
 
 /*
  * Iniciamos los valores de las variables del TDA.
  * Recibimos por parametro una de las variables (protocolo_t)
  */
-void consola_inicio(consola *instancia_de_consola, protocolo_t *servidor_a_user);
+void consola_inicio(consola *instancia_de_consola
+		, protocolo_t *servidor_a_user);
 
 /*
  * Solicitamos al usuario que nos envie la letra para el juego.
  */
-void consola_obtener_input_user(consola *instancia_de_consola, char *char_user);
+void consola_obtener_input_user(consola *instancia_de_consola
+		, char *char_user);
 
 /*
  * En caso de que el usuario nos envie mas de una letra.
- * Este metodo maneja la logica (Utilizado para probar en local, el juego a travez de stdin)
+ * Este metodo maneja la logica (Utilizado
+ * para probar en local, el juego a travez de stdin)
  */
 void consola_obtener_input_siguiente_user(consola *instancia_de_consola,
 		char *char_user);
