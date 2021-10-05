@@ -59,7 +59,7 @@ void servidor_comunicacion(servidor *servidor_creado, int *intentos,
 
 void servidor_fin(servidor *servidor_creado) {
 	protocolo_fin_servicio(&servidor_creado->procolo);
-//	free(servidor_creado->procolo);
+
 }
 
 #endif /* SRC_SERVIDOR_C_ */

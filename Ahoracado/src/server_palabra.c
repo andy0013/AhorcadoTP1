@@ -116,5 +116,7 @@ void palabra_fin(palabra *palabra_en_uso) {
 
 	free(palabra_en_uso->palabra_en_juego);
 
+
+
 }
 

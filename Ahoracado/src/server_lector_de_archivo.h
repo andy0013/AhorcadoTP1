@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <wchar.h>
 
 #ifndef LECTOR_DE_ARCHIVO_H_
