@@ -28,7 +28,7 @@ int linea_llego_al_final(lector_de_archivo *archivo) {
 }
 
 void archivo_fin(lector_de_archivo *archivo) {
-
+	free(archivo->line);
 	fclose(archivo->file);
 
 }

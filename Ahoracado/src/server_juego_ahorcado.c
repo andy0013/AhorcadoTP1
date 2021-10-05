@@ -11,11 +11,7 @@
 void juego_inicio(juego *instancia_de_juego, consola *user_servidor,
 		int intentos_juego) {
 	instancia_de_juego->intentos_juego = intentos_juego;
-//	lector_de_archivo palabras_por_descubrir;
-//	instancia_de_juego->archivo = palabras_por_descubrir;
 	instancia_de_juego->consola_user_servidor = user_servidor;
-//	palabra palabra_leida;
-//	instancia_de_juego->palabra_leida = palabra_leida;
 	instancia_de_juego->veces_que_gano = 0;
 	instancia_de_juego->veces_que_perdio = 0;
 }
