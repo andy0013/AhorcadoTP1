@@ -98,7 +98,7 @@ void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
 	uint8_t estado_juego = *intentos;
 	uint16_t len = strlen(palabra_actual);
 	if (flag_estado) {
-		estado_juego = estado_juego + 127;
+		estado_juego = estado_juego + FLAG_DE_TERMINACION;
 		len = len - 1;
 	}
 	uint16_t len_buf = htons(len);

@@ -30,7 +30,7 @@ void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo) {
 	protocolo_recibir_datos_longitud_palabra_servidor(protocolo,
 			&locutor->longitud_palabra);
 
-	char palabra_de_partuda[locutor->longitud_palabra];
+	char *palabra_de_partuda = (char *)calloc(1,sizeof(char)*locutor->longitud_palabra);
 
 	protocolo_recibir_datos_palabra_servidor(protocolo, palabra_de_partuda,
 			&locutor->longitud_palabra);
@@ -50,7 +50,8 @@ int locutor_termino_el_juego_ganamos(locutor *locutor) {
 }
 
 int locutor_termino_el_juego_perdimos(locutor *locutor) {
-	if (locutor->termino_la_partida) {
+	if ((locutor->termino_la_partida)
+			& (locutor->intentos_usuario == 0)) {
 		printf("Perdiste! La palabra secreta era: %s", locutor->palabra);
 	}
 	return locutor->termino_la_partida;
@@ -69,7 +70,6 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 
 		printf("%s", "Ingrese una letra:\n");
 		if(getline(&locutor->input_user, &size_bytes, stdin) == -1){
-			//ADD VALUE - CATCH TO REENTREGA
 		}
 		*letra_a_enviar =
 				locutor->input_user[locutor->posicion_de_letra_enviada];
@@ -100,5 +100,6 @@ void locutor_solicitar_y_enviar_letra_del_input_user(locutor *locutor,
 }
 
 void locutor_fin(locutor *locutor) {
+	free(locutor->palabra);
 }
 

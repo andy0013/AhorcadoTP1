@@ -44,17 +44,18 @@ void cliente_comunicacion(cliente *servidor_conectado) {
 				&servidor_conectado->protocolo);
 
 		if (locutor_termino_el_juego_ganamos(&locutor_de_la_partida))
-			break;
+			juego_en_curso = 0;
 
 		if (locutor_termino_el_juego_perdimos(&locutor_de_la_partida))
-			break;
+			juego_en_curso = 0;
 
-		locutor_imprimir_informacon_recibida(&locutor_de_la_partida);
+		if(juego_en_curso){
+			locutor_imprimir_informacon_recibida(&locutor_de_la_partida);
 
-		locutor_solicitar_y_enviar_letra_del_input_user(&locutor_de_la_partida,
+			locutor_solicitar_y_enviar_letra_del_input_user(&locutor_de_la_partida,
 				&servidor_conectado->protocolo);
+		}
 	}
-
 	locutor_fin(&locutor_de_la_partida);
 }
 
