@@ -59,5 +59,6 @@ void cliente_comunicacion(cliente *servidor_conectado) {
 }
 
 void cliente_fin(cliente *servidor_creado) {
+	protocolo_fin_cliente(&servidor_creado->protocolo);
 }
 

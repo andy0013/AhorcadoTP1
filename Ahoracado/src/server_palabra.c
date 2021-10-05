@@ -35,9 +35,8 @@ int el_caracter_propuesto_fue_propuesto_previamente(palabra *palabra_en_uso,
 		char leido) {
 	int fue_propuesto_previamente = 0;
 
-	char caracter_leido;
-
 	for (int i = 0; i < palabra_en_uso->longitud; i++) {
+		char caracter_leido;
 		caracter_leido = palabra_en_uso->palabra_en_juego[i];
 		if ((caracter_leido == leido)) {
 			fue_propuesto_previamente = 1;
@@ -49,9 +48,8 @@ int el_caracter_propuesto_fue_propuesto_previamente(palabra *palabra_en_uso,
 int modificar_palabra_en_uso(palabra *palabra_en_uso, char leido) {
 	int modificamos_palabra_en_juego = 0;
 
-	char caracter_leido;
-
 	for (int i = 0; i < palabra_en_uso->longitud; i++) {
+		char caracter_leido;
 		caracter_leido = palabra_en_uso->palabra_leida[i];
 		if ((caracter_leido == leido)) {
 			palabra_en_uso->palabra_en_juego[i] = leido;

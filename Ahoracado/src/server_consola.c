@@ -20,7 +20,6 @@ void consola_inicio(consola *instancia_de_consola
 
 void consola_conectar_usuario_de_ser_necesario(consola *instancia_de_consola) {
 	if (instancia_de_consola->servidor_a_user->skt_cliente.fd == 0) {
-
 		protocolo_aceptar_cliente(instancia_de_consola->servidor_a_user);
 	}
 }
