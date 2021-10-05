@@ -70,6 +70,12 @@ void juego_user_perdio_partida(juego *instancia_de_juego) {
 			instancia_de_juego->veces_que_perdio + 1;
 }
 
+void imprimir_resultado_juegos(juego *instancia_de_juego){
+	printf("Resumen:\n");
+	printf("\tVictorias: %i\n",instancia_de_juego->veces_que_gano);
+	printf("\tDerrotas: %i\n",instancia_de_juego->veces_que_perdio);
+}
+
 void juego_ejecutar(juego *instancia_de_juego) {
 	char input_user;
 
@@ -96,8 +102,7 @@ void juego_ejecutar(juego *instancia_de_juego) {
 			juego_user_perdio_partida(instancia_de_juego);
 		}
 	}
-	printf("GANO:  %i\n",instancia_de_juego->veces_que_gano);
-	printf("PERDIO:  %i\n",instancia_de_juego->veces_que_perdio);
+	imprimir_resultado_juegos(instancia_de_juego);
 }
 
 void juego_fin(juego *instancia_de_juego) {
