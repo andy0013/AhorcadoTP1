@@ -30,7 +30,8 @@ void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo) {
 	protocolo_recibir_datos_longitud_palabra_servidor(protocolo,
 			&locutor->longitud_palabra);
 
-	char *palabra_de_partuda = (char *)calloc(1,sizeof(char)*locutor->longitud_palabra);
+	char *palabra_de_partuda =
+			(char *)calloc(1,sizeof(char)*locutor->longitud_palabra);
 
 	protocolo_recibir_datos_palabra_servidor(protocolo, palabra_de_partuda,
 			&locutor->longitud_palabra);
