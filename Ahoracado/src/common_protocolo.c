@@ -96,10 +96,9 @@ void protocolo_recibir_datos_palabra_servidor(
 void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
 		int *intentos, char *palabra_actual, int flag_estado) {
 	uint8_t estado_juego = *intentos;
-	uint8_t flag = 127;
 	uint16_t len = strlen(palabra_actual);
 	if (flag_estado) {
-		estado_juego = estado_juego + flag;
+		estado_juego = estado_juego + 127;
 		len = len - 1;
 	}
 	uint16_t len_buf = htons(len);

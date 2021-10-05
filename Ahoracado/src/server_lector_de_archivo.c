@@ -10,26 +10,19 @@ void archivo_inicio(lector_de_archivo *archivo, char *argumento_path_archivo) {
 	archivo->file = fopen(argumento_path_archivo, "r");
 	archivo->line = NULL;
 	archivo->lenLineaLeida = 0;
-
 }
 
 void leer_linea_archivo(lector_de_archivo *archivo) {
-
 	if(getline(&archivo->line, &archivo->lenLineaLeida, archivo->file)==-1){
-		//	REFACTOR
 	}
-
 }
 
 int linea_llego_al_final(lector_de_archivo *archivo) {
-
 	return feof(archivo->file);
-
 }
 
 void archivo_fin(lector_de_archivo *archivo) {
 	free(archivo->line);
 	fclose(archivo->file);
-
 }
 

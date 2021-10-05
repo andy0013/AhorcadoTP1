@@ -11,7 +11,6 @@
 
 int servidor_ejecutar(int argc, char *argv[]) {
 	servidor servidor_levantado;
-
 	if (servidor_inicio(&servidor_levantado, argv[1]) != EXITO)
 		return ERROR;
 
@@ -25,7 +24,6 @@ int servidor_ejecutar(int argc, char *argv[]) {
 }
 
 int servidor_inicio(servidor *servidor_creado, char *port) {
-
 	protocolo_t protocolo;
 
 	int escuchando_sockets = protocolo_inicio_servidor(&protocolo, "localhost",
@@ -38,7 +36,6 @@ int servidor_inicio(servidor *servidor_creado, char *port) {
 
 void servidor_comunicacion(servidor *servidor_creado, int *intentos,
 		char *argumento_path_archivo) {
-
 	juego juego_ahorcado;
 
 	consola jugador;
@@ -54,12 +51,10 @@ void servidor_comunicacion(servidor *servidor_creado, int *intentos,
 	juego_ejecutar(&juego_ahorcado);
 
 	juego_fin(&juego_ahorcado);
-
 }
 
 void servidor_fin(servidor *servidor_creado) {
 	protocolo_fin_servicio(&servidor_creado->procolo);
-
 }
 
 #endif /* SRC_SERVIDOR_C_ */
