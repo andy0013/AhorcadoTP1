@@ -9,7 +9,7 @@
 #include "common_socket.h"
 
 void socket_init(socket_t *self) {
-
+	self->fd = 0;
 }
 
 void socket_uninit(socket_t *self) {

@@ -9,12 +9,10 @@
 #include <string.h>
 #include "server_servidor.h"
 
-#define SERVIDOR "server"
-#define CLIENTE "client"
 
 int main(int argc, char *argv[]) {
 	int r = 0;
-	if ((argc == 4) && (strstr(SERVIDOR, SERVIDOR) != NULL)) {
+	if (argc == 4) {
 		r = servidor_ejecutar(argc, argv);
 	}
 	return r;

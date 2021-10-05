@@ -26,9 +26,9 @@ int servidor_ejecutar(int argc, char *argv[]) {
 
 int servidor_inicio(servidor *servidor_creado, char *port) {
 
-	protocolo_t *protocolo = malloc(sizeof(protocolo_t));
+	protocolo_t protocolo;
 
-	int escuchando_sockets = protocolo_inicio_servidor(protocolo, "localhost",
+	int escuchando_sockets = protocolo_inicio_servidor(&protocolo, "localhost",
 			port);
 
 	servidor_creado->procolo = protocolo;
@@ -43,7 +43,7 @@ void servidor_comunicacion(servidor *servidor_creado, int *intentos,
 
 	consola jugador;
 
-	consola_inicio(&jugador, servidor_creado->procolo);
+	consola_inicio(&jugador, &servidor_creado->procolo);
 
 	juego_inicio(&juego_ahorcado, &jugador, *intentos);
 
@@ -58,8 +58,8 @@ void servidor_comunicacion(servidor *servidor_creado, int *intentos,
 }
 
 void servidor_fin(servidor *servidor_creado) {
-	protocolo_fin_servicio(servidor_creado->procolo);
-	free(servidor_creado->procolo);
+	protocolo_fin_servicio(&servidor_creado->procolo);
+//	free(servidor_creado->procolo);
 }
 
 #endif /* SRC_SERVIDOR_C_ */

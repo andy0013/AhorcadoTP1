@@ -19,7 +19,7 @@
 #define ERROR 1
 
 typedef struct {
-	protocolo_t *protocolo;
+	protocolo_t protocolo;
 } cliente;
 
 /*

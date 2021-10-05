@@ -17,8 +17,8 @@
 #define FLAG_DE_TERMINACION 127
 
 typedef struct {
-	socket_t *skt_server;
-	socket_t *skt_cliente;
+	socket_t skt_server;
+	socket_t skt_cliente;
 } protocolo_t;
 /*
  *  Inicia la conexion con el servidor.

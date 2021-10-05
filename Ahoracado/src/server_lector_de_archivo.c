@@ -7,7 +7,7 @@
 #include "server_lector_de_archivo.h"
 
 void archivo_inicio(lector_de_archivo *archivo, char *argumento_path_archivo) {
-	archivo->file = fopen("words.txt", "r");
+	archivo->file = fopen(argumento_path_archivo, "r");
 	archivo->line = NULL;
 	archivo->lenLineaLeida = 0;
 
@@ -29,7 +29,6 @@ int linea_llego_al_final(lector_de_archivo *archivo) {
 
 void archivo_fin(lector_de_archivo *archivo) {
 
-//	free(archivo->line); porque no libera?
 	fclose(archivo->file);
 
 }

@@ -21,7 +21,7 @@
 #define ERROR 1
 
 typedef struct {
-	protocolo_t *procolo;
+	protocolo_t procolo;
 } servidor;
 
 /*

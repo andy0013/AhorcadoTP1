@@ -75,6 +75,7 @@ void juego_user_perdio_partida(juego *instancia_de_juego) {
 	consola_finalizar_partida_cliente_actual(
 			instancia_de_juego->consola_user_servidor);
 
+	instancia_de_juego->veces_que_perdio = instancia_de_juego->veces_que_perdio + 1;
 }
 
 void juego_ejecutar(juego *instancia_de_juego) {
@@ -110,6 +111,9 @@ void juego_ejecutar(juego *instancia_de_juego) {
 		}
 
 	}
+
+	printf("GANO:  %i\n",instancia_de_juego->veces_que_gano);
+	printf("PERDIO:  %i\n",instancia_de_juego->veces_que_perdio);
 
 }
 
