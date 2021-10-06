@@ -69,9 +69,12 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 	if (locutor->input_user == NULL) {
 		size_t size_bytes = 0;
 
-		printf("%s", "Ingrese una letra:\n");
-		if(getline(&locutor->input_user, &size_bytes, stdin) == -1){
-		}
+		printf("%s", "Ingrese una letra: ");
+
+		size_t read = getline(&locutor->input_user, &size_bytes, stdin);
+
+		if(read == -1){}
+
 		*letra_a_enviar =
 				locutor->input_user[locutor->posicion_de_letra_enviada];
 	} else {
@@ -82,12 +85,13 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra) {
 	locutor->posicion_de_letra_enviada++;
 
-	*letra = locutor->input_user[locutor->posicion_de_letra_enviada];
-
-	if (*letra == '\n') {
+	if (locutor->posicion_de_letra_enviada
+			== (strlen(locutor->input_user) -1 )) {
 		locutor_inicio(locutor);
 
 		locutor_solicitar_letra_del_input_user(locutor, letra);
+	}else{
+		*letra = locutor->input_user[locutor->posicion_de_letra_enviada];
 	}
 }
 
