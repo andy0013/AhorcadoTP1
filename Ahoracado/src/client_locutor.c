@@ -86,7 +86,7 @@ void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra) {
 	locutor->posicion_de_letra_enviada++;
 
 	if (locutor->posicion_de_letra_enviada
-			== (strlen(locutor->input_user) -1 )) {
+			== (strlen(locutor->input_user)-1)){
 		locutor_inicio(locutor);
 
 		locutor_solicitar_letra_del_input_user(locutor, letra);
