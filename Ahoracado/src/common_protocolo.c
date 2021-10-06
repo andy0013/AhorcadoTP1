@@ -111,13 +111,13 @@ void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
 
 void protocolo_recibir_mensaje_de_cliente(protocolo_t *instancia_de_protocolo,
 		char *input) {
-	socket_receive(&instancia_de_protocolo->skt_cliente, input, 1);
+	socket_receive(&instancia_de_protocolo->skt_cliente, input, sizeof(char));
 }
 
 void protocolo_enviar_mensaje_a_servidor(protocolo_t *instancia_de_protocolo,
 		size_t letras_enviadas, char *buffer) {
 	socket_send(&instancia_de_protocolo->skt_cliente, buffer,
-			1/*strlen(letras_enviadas)*/);
+			sizeof(char));
 }
 
 void protocolo_fin_cliente(protocolo_t *instancia_de_protocolo) {

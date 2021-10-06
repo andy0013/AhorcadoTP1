@@ -97,12 +97,10 @@ int socket_connect(socket_t *self, const char *host, const char *service) {
 ssize_t socket_send(socket_t *self, const char *buffer, size_t length) {
 	if (length == 0)
 		return 0;
-	int bytes_not_yet = length;
 	int all_bytes_sent = 0;
-	const char *send_request = buffer;
 	while (all_bytes_sent < length) {
 		ssize_t bytes = 0;
-		bytes = send(self->fd, &send_request[all_bytes_sent], bytes_not_yet,
+		bytes = send(self->fd, &buffer[all_bytes_sent], length - all_bytes_sent,
 				MSG_NOSIGNAL);
 		if (bytes == -1) {
 			all_bytes_sent = -1;
@@ -111,7 +109,6 @@ ssize_t socket_send(socket_t *self, const char *buffer, size_t length) {
 		if (bytes == 0)
 			break;
 		all_bytes_sent += bytes;
-		bytes_not_yet -= bytes;
 	}
 	return all_bytes_sent;
 }
@@ -119,11 +116,10 @@ ssize_t socket_send(socket_t *self, const char *buffer, size_t length) {
 ssize_t socket_receive(socket_t *self, char *buffer, size_t length) {
 	if (length == 0)
 		return 0;
-	int bytes_not_yet = length;
 	int all_bytes_received = 0;
 	while (all_bytes_received < length) {
 		ssize_t bytes = 0;
-		bytes = recv(self->fd, &buffer[all_bytes_received], bytes_not_yet, 0);
+		bytes = recv(self->fd, &buffer[all_bytes_received], length - all_bytes_received, 0);
 		if (bytes == -1) {
 			all_bytes_received = -1;
 			break;
@@ -131,7 +127,6 @@ ssize_t socket_receive(socket_t *self, char *buffer, size_t length) {
 		if (bytes == 0)
 			break;
 		all_bytes_received += bytes;
-		bytes_not_yet -= bytes;
 	}
 	return all_bytes_received;
 }

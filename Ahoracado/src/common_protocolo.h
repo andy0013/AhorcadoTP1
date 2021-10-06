@@ -14,7 +14,7 @@
 #ifndef PROTOCOLO_H_
 #define PROTOCOLO_H_
 
-#define FLAG_DE_TERMINACION 127
+#define FLAG_DE_TERMINACION 128
 
 typedef struct {
 	socket_t skt_server;
