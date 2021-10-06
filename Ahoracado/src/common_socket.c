@@ -119,7 +119,8 @@ ssize_t socket_receive(socket_t *self, char *buffer, size_t length) {
 	int all_bytes_received = 0;
 	while (all_bytes_received < length) {
 		ssize_t bytes = 0;
-		bytes = recv(self->fd, &buffer[all_bytes_received], length - all_bytes_received, 0);
+		bytes = recv(self->fd, &buffer[all_bytes_received],
+				length - all_bytes_received, 0);
 		if (bytes == -1) {
 			all_bytes_received = -1;
 			break;
