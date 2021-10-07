@@ -39,7 +39,7 @@ int protocolo_inicio_servidor(protocolo_t *instancia_de_protocolo,
 }
 
 void protocolo_aceptar_cliente(protocolo_t *instancia_de_protocolo) {
-	if (instancia_de_protocolo->skt_cliente.fd == 0) {
+	if (instancia_de_protocolo->skt_cliente.fd == (-2)) {
 		socket_t skt_cliente_conectado;
 
 		socket_accept(&instancia_de_protocolo->skt_server,
@@ -50,7 +50,7 @@ void protocolo_aceptar_cliente(protocolo_t *instancia_de_protocolo) {
 	} else {
 		socket_uninit(&instancia_de_protocolo->skt_cliente);
 
-		instancia_de_protocolo->skt_cliente.fd = 0;
+		instancia_de_protocolo->skt_cliente.fd = (-2);
 
 		protocolo_aceptar_cliente(instancia_de_protocolo);
 	}
@@ -94,9 +94,9 @@ void protocolo_recibir_datos_palabra_servidor(
 }
 
 void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
-		int *intentos, char *palabra_actual, int flag_estado) {
+		int *intentos, char *palabra_actual, int flag_estado, int longitud) {
 	uint8_t estado_juego = *intentos;
-	uint16_t len = strlen(palabra_actual);
+	uint16_t len = (uint16_t) longitud;
 	if (flag_estado) {
 		estado_juego = estado_juego + FLAG_DE_TERMINACION;
 		len = len - 1;

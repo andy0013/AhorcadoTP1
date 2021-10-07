@@ -59,7 +59,7 @@ void consola_finalizar_partida_cliente_actual(consola *instancia_de_consola);
  * "____" . "c___" . "ca_a" - "casa"
  */
 void consola_mensaje_palabra_actual(consola *instancia_de_consola,
-		char *palabra_actual, int *intentos, int flag_estado);
+		char *palabra_actual, int *intentos, int flag_estado, int longitud);
 
 /*
  * Libera los recursos del TDA consola.

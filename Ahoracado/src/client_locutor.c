@@ -30,13 +30,18 @@ void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo) {
 	protocolo_recibir_datos_longitud_palabra_servidor(protocolo,
 			&locutor->longitud_palabra);
 
-	char *palabra_de_partuda =
-			(char *)calloc(1,sizeof(char)*locutor->longitud_palabra);
+//	char *palabra_de_partuda =
+//			(char *)calloc(locutor->longitud_palabra,sizeof(char));
 
-	protocolo_recibir_datos_palabra_servidor(protocolo, palabra_de_partuda,
+	locutor->palabra = (char *)calloc(locutor->longitud_palabra+1,sizeof(char));
+	//MEMSET SOLUCIONA ERROR VALGRIND PARA MANIPULAR STRING RECIBIDO
+	memset(locutor->palabra,'\0',locutor->longitud_palabra+1);
+//	protocolo_recibir_datos_palabra_servidor(protocolo, palabra_de_partuda,
+//			&locutor->longitud_palabra);
+	protocolo_recibir_datos_palabra_servidor(protocolo, locutor->palabra,
 			&locutor->longitud_palabra);
 
-	locutor->palabra = palabra_de_partuda;
+//	locutor->palabra = palabra_de_partuda;
 }
 
 int locutor_termino_el_juego_ganamos(locutor *locutor) {
@@ -72,7 +77,7 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 		printf("%s", "Ingrese una letra: ");
 
 		size_t read = getline(&locutor->input_user, &size_bytes, stdin);
-		printf("Input user: %s\n", locutor->input_user);
+
 		if(read == -1){}
 
 		*letra_a_enviar =
@@ -87,6 +92,8 @@ void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra) {
 
 	if (locutor->posicion_de_letra_enviada
 			== (strlen(locutor->input_user)-1)){
+		locutor_fin(locutor);
+
 		locutor_inicio(locutor);
 
 		locutor_solicitar_letra_del_input_user(locutor, letra);
@@ -104,7 +111,11 @@ void locutor_solicitar_y_enviar_letra_del_input_user(locutor *locutor,
 	protocolo_enviar_mensaje_a_servidor(protocolo, 1, &letra_input);
 }
 
-void locutor_fin(locutor *locutor) {
+void locutor_liberar_memoria(locutor *locutor){
 	free(locutor->palabra);
+}
+
+void locutor_fin(locutor *locutor) {
+	free(locutor->input_user);
 }
 

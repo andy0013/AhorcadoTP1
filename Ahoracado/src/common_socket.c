@@ -9,7 +9,7 @@
 #include "common_socket.h"
 
 void socket_init(socket_t *self) {
-	self->fd = 0;
+	self->fd = -2;
 }
 
 void socket_uninit(socket_t *self) {
@@ -21,7 +21,7 @@ void socket_uninit(socket_t *self) {
  * En esa funcion debemos setear los datos del hints, socktype, flags.
  * Esta infiormacion fue proporcionada en las diapositivas de socket.
  */
-static struct addrinfo* _prepare_getaddrinfo(socket_t *self, const char *host,
+static struct addrinfo* prepare_getaddrinfo(socket_t *self, const char *host,
 		const char *service, int flags) {
 	struct addrinfo *addr_result;
 	struct addrinfo hints;
@@ -41,7 +41,7 @@ int socket_bind_and_listen(socket_t *self, const char *host,
 	int connection = -1;
 	struct addrinfo *addr_result, *ptr;
 	//Si enviamos el host con NULL es localhost
-	addr_result = _prepare_getaddrinfo(self, NULL, service, SERVER_FLAGS);
+	addr_result = prepare_getaddrinfo(self, NULL, service, SERVER_FLAGS);
 	int fd = -1;
 	for (ptr = addr_result; ptr != NULL && binded == 0; ptr = ptr->ai_next) {
 		/* Creamos el socket definiendo la familia (deberia ser AF_INET IPv4),
@@ -75,7 +75,7 @@ int socket_connect(socket_t *self, const char *host, const char *service) {
 	int connection = 0;
 	int connection_err = 0;
 	struct addrinfo *addr_result, *ptr;
-	addr_result = _prepare_getaddrinfo(self, host, service, CLIENT_FLAGS);
+	addr_result = prepare_getaddrinfo(self, host, service, CLIENT_FLAGS);
 
 	int fd = -1;
 	for (ptr = addr_result; ptr != NULL && connection_err == 0;

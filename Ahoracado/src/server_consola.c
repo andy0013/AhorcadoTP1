@@ -19,7 +19,7 @@ void consola_inicio(consola *instancia_de_consola
 }
 
 void consola_conectar_usuario_de_ser_necesario(consola *instancia_de_consola) {
-	if (instancia_de_consola->servidor_a_user->skt_cliente.fd == 0) {
+	if (instancia_de_consola->servidor_a_user->skt_cliente.fd == (-2)) {
 		protocolo_aceptar_cliente(instancia_de_consola->servidor_a_user);
 	}
 }
@@ -27,7 +27,7 @@ void consola_conectar_usuario_de_ser_necesario(consola *instancia_de_consola) {
 void consola_finalizar_partida_cliente_actual(consola *instancia_de_consola) {
 	socket_uninit(&instancia_de_consola->servidor_a_user->skt_cliente);
 
-	instancia_de_consola->servidor_a_user->skt_cliente.fd = 0;
+	instancia_de_consola->servidor_a_user->skt_cliente.fd = -2;
 }
 
 void consola_obtener_input_user(consola *instancia_de_consola
@@ -64,9 +64,9 @@ void consola_obtener_input_siguiente_user(consola *instancia_de_consola,
 }
 
 void consola_mensaje_palabra_actual(consola *instancia_de_consola,
-		char *palabra_actual, int *intentos, int flag_estado) {
+		char *palabra_actual, int *intentos, int flag_estado,int longitud) {
 	protocolo_enviar_mensaje_a_cliente(instancia_de_consola->servidor_a_user,
-			intentos, palabra_actual, flag_estado);
+			intentos, palabra_actual, flag_estado,longitud);
 }
 
 void consola_fin(consola *instancia_de_consola) {

@@ -36,8 +36,7 @@ void juego_preparar_ahorcado(juego *instancia_de_juego) {
 
 	palabra palabra_leida;
 
-	palabra_inicio(&palabra_leida,
-			longitudDePalabraPorAdivinarEnEsteIntento,
+	palabra_inicio(&palabra_leida, longitudDePalabraPorAdivinarEnEsteIntento,
 			instancia_de_juego->archivo.line);
 
 	instancia_de_juego->palabra_leida = palabra_leida;
@@ -46,7 +45,10 @@ void juego_preparar_ahorcado(juego *instancia_de_juego) {
 void juego_user_gano_partida(juego *instancia_de_juego) {
 	consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,
 			instancia_de_juego->palabra_leida.palabra_leida,
-			&instancia_de_juego->intentos_disponibles, 1);
+			&instancia_de_juego->intentos_disponibles, 1,
+			instancia_de_juego->palabra_leida.longitud);
+
+	palabra_fin(&instancia_de_juego->palabra_leida);
 
 	juego_preparar_ahorcado((instancia_de_juego));
 
@@ -59,21 +61,24 @@ void juego_user_gano_partida(juego *instancia_de_juego) {
 void juego_user_perdio_partida(juego *instancia_de_juego) {
 	consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,
 			instancia_de_juego->palabra_leida.palabra_leida,
-			&instancia_de_juego->intentos_disponibles, 1);
+			&instancia_de_juego->intentos_disponibles, 1,
+			instancia_de_juego->palabra_leida.longitud);
+
+	palabra_fin(&instancia_de_juego->palabra_leida);
 
 	juego_preparar_ahorcado((instancia_de_juego));
 
 	consola_finalizar_partida_cliente_actual(
 			instancia_de_juego->consola_user_servidor);
 
-	instancia_de_juego->veces_que_perdio =
-			instancia_de_juego->veces_que_perdio + 1;
+	instancia_de_juego->veces_que_perdio = instancia_de_juego->veces_que_perdio
+			+ 1;
 }
 
-void imprimir_resultado_juegos(juego *instancia_de_juego){
+void imprimir_resultado_juegos(juego *instancia_de_juego) {
 	printf("Resumen:\n");
-	printf("\tVictorias: %i\n",instancia_de_juego->veces_que_gano);
-	printf("\tDerrotas: %i\n",instancia_de_juego->veces_que_perdio);
+	printf("\tVictorias: %i\n", instancia_de_juego->veces_que_gano);
+	printf("\tDerrotas: %i\n", instancia_de_juego->veces_que_perdio);
 }
 
 void juego_ejecutar(juego *instancia_de_juego) {
@@ -86,7 +91,8 @@ void juego_ejecutar(juego *instancia_de_juego) {
 		consola_mensaje_palabra_actual(
 				instancia_de_juego->consola_user_servidor,
 				instancia_de_juego->palabra_leida.palabra_en_juego,
-				&instancia_de_juego->intentos_disponibles, 0);
+				&instancia_de_juego->intentos_disponibles, 0,
+				instancia_de_juego->palabra_leida.longitud);
 
 		consola_obtener_input_user(instancia_de_juego->consola_user_servidor,
 				&input_user);

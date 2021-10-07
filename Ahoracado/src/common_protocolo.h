@@ -44,7 +44,7 @@ void protocolo_aceptar_cliente(protocolo_t *instancia_de_protocolo);
  * La forma de enviar la informacion fue definida en el informe.
  */
 void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
-		int *intentos, char *palabra_actual, int flag_estado);
+		int *intentos, char *palabra_actual, int flag_estado,int longitud);
 
 /*
  * Recibe el input del cliente. la letra por probar en nuestra palabra.

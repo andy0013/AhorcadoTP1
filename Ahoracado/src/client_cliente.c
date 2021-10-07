@@ -55,6 +55,7 @@ void cliente_comunicacion(cliente *servidor_conectado) {
 			locutor_solicitar_y_enviar_letra_del_input_user(&locutor_de_la_partida,
 				&servidor_conectado->protocolo);
 		}
+		locutor_liberar_memoria(&locutor_de_la_partida);
 	}
 	locutor_fin(&locutor_de_la_partida);
 }
