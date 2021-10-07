@@ -10,8 +10,7 @@
 #include <netdb.h>
 #include <unistd.h>
 
-#define FAMILY AF_INET
-#define SOCK_TYPE SOCK_STREAM
+
 #define CLIENT_FLAGS 0
 #define SERVER_FLAGS AI_PASSIVE
 

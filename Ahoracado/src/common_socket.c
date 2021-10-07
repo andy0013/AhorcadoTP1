@@ -13,6 +13,7 @@ void socket_init(socket_t *self) {
 }
 
 void socket_uninit(socket_t *self) {
+	shutdown(self->fd,SHUT_RDWR);
 	close(self->fd);
 }
 
@@ -27,7 +28,7 @@ static struct addrinfo* prepare_getaddrinfo(socket_t *self, const char *host,
 	struct addrinfo hints;
 	memset(&hints, 0, sizeof(struct addrinfo));
 	hints.ai_family = AF_INET;
-	hints.ai_socktype = SOCK_TYPE;
+	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = flags;
 	if ((getaddrinfo(host, service, &hints, &addr_result)) != 0) {
 		return NULL;
