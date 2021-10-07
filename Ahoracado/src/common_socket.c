@@ -76,26 +76,26 @@ void socket_accept(socket_t *listener, socket_t *peer) {
 }
 
 int socket_connect(socket_t *self, const char *host, const char *service) {
-	int connection = 0;
-	int connection_fail = 0;
+	int connection = -1;
+	int connection_done = 0;
 	struct addrinfo *addr_result, *ptr;
 	addr_result = prepare_getaddrinfo(self, host, service, CLIENT_FLAGS);
 
 	int fd = -1;
-	for (ptr = addr_result; ptr != NULL && connection_fail == 0;
+	for (ptr = addr_result; ptr != NULL && connection_done == 0;
 			ptr = ptr->ai_next) {
 		/* Creamos el socket y conectamos. si falla la conexion. Salimos. */
 		fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 		connection = connect(fd, ptr->ai_addr, ptr->ai_addrlen);
-		if (connection == -1) {
-			connection_fail = 1;
+		if (connection == 0) {
+			connection_done = 1;
 		}
 	}
 
 	self->fd = fd;
 	/* Finalmente, la **lista** de direcciones debe ser liberada */
 	freeaddrinfo(addr_result);
-	if(connection_fail){
+	if(!connection_done){
 		socket_uninit(self);
 	}
 	return connection;
