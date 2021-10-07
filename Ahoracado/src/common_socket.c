@@ -54,6 +54,9 @@ int socket_bind_and_listen(socket_t *self, const char *host,
 		}
 	}
 	self->fd = fd;
+	if(!binded){
+		socket_uninit(self);
+	}
 	/* Finalmente, la **lista** de direcciones debe ser liberada */
 	freeaddrinfo(addr_result);
 	if (binded) {
@@ -74,24 +77,27 @@ void socket_accept(socket_t *listener, socket_t *peer) {
 
 int socket_connect(socket_t *self, const char *host, const char *service) {
 	int connection = 0;
-	int connection_err = 0;
+	int connection_fail = 0;
 	struct addrinfo *addr_result, *ptr;
 	addr_result = prepare_getaddrinfo(self, host, service, CLIENT_FLAGS);
 
 	int fd = -1;
-	for (ptr = addr_result; ptr != NULL && connection_err == 0;
+	for (ptr = addr_result; ptr != NULL && connection_fail == 0;
 			ptr = ptr->ai_next) {
-		/* Creamos el socket definiendo la familia (deberia ser AF_INET IPv4),
-		 el tipo de socket (deberia ser SOCK_STREAM TCP) y el protocolo (0) */
+		/* Creamos el socket y conectamos. si falla la conexion. Salimos. */
 		fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 		connection = connect(fd, ptr->ai_addr, ptr->ai_addrlen);
 		if (connection == -1) {
-			connection_err = 1;
+			connection_fail = 1;
 		}
 	}
+
 	self->fd = fd;
 	/* Finalmente, la **lista** de direcciones debe ser liberada */
 	freeaddrinfo(addr_result);
+	if(connection_fail){
+		socket_uninit(self);
+	}
 	return connection;
 }
 
