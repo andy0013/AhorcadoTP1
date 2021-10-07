@@ -17,6 +17,7 @@
 #include "common_socket.h"
 #include "common_protocolo.h"
 
+#define HOST "localhost"
 #define EXITO 0
 #define ERROR 1
 

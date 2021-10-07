@@ -11,10 +11,12 @@
 
 int servidor_ejecutar(int argc, char *argv[]) {
 	servidor servidor_levantado;
-	if (servidor_inicio(&servidor_levantado, argv[1]) != EXITO)
+	int intentos = strtol(argv[2], NULL, 10);
+	if(intentos <= 0)
 		return ERROR;
 
-	int intentos = strtol(argv[2], NULL, 10);
+	if (servidor_inicio(&servidor_levantado, argv[1]) != EXITO)
+		return ERROR;
 
 	servidor_comunicacion(&servidor_levantado, &intentos, argv[3]);
 
@@ -26,7 +28,7 @@ int servidor_ejecutar(int argc, char *argv[]) {
 int servidor_inicio(servidor *servidor_creado, char *port) {
 	protocolo_t protocolo;
 
-	int escuchando_sockets = protocolo_inicio_servidor(&protocolo, "localhost",
+	int escuchando_sockets = protocolo_inicio_servidor(&protocolo, HOST,
 			port);
 
 	servidor_creado->procolo = protocolo;
