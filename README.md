@@ -116,4 +116,30 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
 ![valgrind](imagenes/ErroresValgrind.PNG)
  
 ![valgrind](imagenes/ErroresValgrind2.PNG)
+
+# CORRECCIONES DE PRIMER ENTREGA
+
+ ## ISSUE Nro 1.
+  El primer error al cual nos enfrenamos, fue que el zip entregado no compilaba en el Sercom. La correccion que se realizo fue, cambiar el nombre de los TDAs involucrados, para esto mismo se tuvo en cuenta si pertenecian al flujo el Cliente, Servidor, o ambos, como es el caso del Protocolo - Sockets.
+  Por otro lado, tambien hubo que corregir funciones no declaradas, #includes no realizados, normas de CPP de longitud, o sentencias de control que siempre se ejecutarian, etc.
  
+ ## ISSUE Nro 2.
+  Es importante mencionar, que el ISSUE nro 1, fue resuelto gracias al profesor Martin, quien amablemente me ayudo a revisar el Makefile, y entender porque no se estaba tomando correctamente los archivos. Tambien, en la charla me sugirio lograr que el proyecto haga una entrega correcta y posteriormente cambiarlos. De momento (7/10), se logro una entrega de 70%, con falla en las pruebas privadas. 
+  Una de las correcciones, y la mas importante que se hizo, es que estaba siendo rechazado la conexion de cliente al hacer la prueba en Sercom, para esto se hizo una revision completa de Sockets, se hicieron multiples cambios, entre ellos, el que logro resolver este error fue en el "connect", ya que no estabamos revisando correctamente las direcciones hasta que se conecte al HOST - PORT enviado. Luego tambien hubo multiples cambios en controles, "Shutdown", y retorno de errores. Aun queda pendiente resolverlo sin guiarme por los proyectos que comparte la catedra, aunque, confirmo que entiendo completamente el flujo.
+  
+ ## ISSUE Nro 3 y 4.
+  En este error de Heaps innecesarios, tenia varios casos, previo a resolver el ISSUE Nro 2, ya que estaba trabado por la dificultad del mensaje "*Connection reset by peer*". Previo a resolver ISSUE Nro 2, se resolvio este problema, se hizo varios cambios eliminando la mayoria de Mallocs.
+  A este momento las unicas variables que utilizan el Heap son:
+  El input del user - ya que puede ser variable.
+  Getline - para lectura del archivo de longitud variable.
+  La palabra recibida desde el cliente enviada por el servidor.
+  En este ultimo caso, se puede hacer tambien SIN usar el heap, ya que el nos primeros 3 bytes, puedo saber el tamaño de la palabra. No es una buena practica, ya que no se sabe el tamaño que reservar en un principio, ya que se sabe en Runtime el valor.
+  
+ ## ISSUE Nro 5.
+ Este caso no nos llevo mas que cambiar el filename hardcodeado por el valor recibido, esto fue un error mas que nada de "ultimo momento" ya que al dia de la entrega, al ver que no estaba compilando en Sercom pero en mi local si, y no entendia porque, comence a cambiar pruebas. Pero afortunadamente ya estaba enviando el valor de la variable, simplemente se remplazo el hardcode por la variable.
+ 
+ ## ISSUE Nro 6.
+  Este error no tengo el claro lo que fue marcado, ya que posteriormente, entendi que lo estaba usando correctamente en ese momento de entrega. No se cambio la forma del Getline ya que se estaba enviando el valor adecuado. Se agrego el Free correspondiente para que se libere la memoria.
+  
+  
+  
