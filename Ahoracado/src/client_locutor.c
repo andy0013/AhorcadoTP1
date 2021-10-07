@@ -68,7 +68,7 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 	if (locutor->input_user == NULL) {
 		size_t size_bytes = 0;
 
-		printf("%s", "Ingrese una letra: \n");
+		printf("%s", "Ingrese letra: \n");
 
 		size_t read = getline(&locutor->input_user, &size_bytes, stdin);
 
@@ -92,6 +92,7 @@ void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra) {
 
 		locutor_solicitar_letra_del_input_user(locutor, letra);
 	}else{
+		printf("%s", "Ingrese letra: \n");
 		*letra = locutor->input_user[locutor->posicion_de_letra_enviada];
 	}
 }
