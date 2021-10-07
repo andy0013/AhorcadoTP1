@@ -128,7 +128,7 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
   Una de las correcciones, y la mas importante que se hizo, es que estaba siendo rechazado la conexion de cliente al hacer la prueba en Sercom, para esto se hizo una revision completa de Sockets, se hicieron multiples cambios, entre ellos, el que logro resolver este error fue en el "connect", ya que no estabamos revisando correctamente las direcciones hasta que se conecte al HOST - PORT enviado. Luego tambien hubo multiples cambios en controles, "Shutdown", y retorno de errores. Aun queda pendiente el desarrollo sin guiarme por los proyectos que comparte la catedra, aunque, confirmo que entiendo completamente el flujo.
   
  ## ISSUE Nro 3 y 4.
-  En este error de Heaps innecesarios, tenia varios casos, previo a resolver el ISSUE Nro 2, ya que estaba trabado por la dificultad del mensaje "*Connection reset by peer*". Previo a resolver ISSUE Nro 2, se resolvio este problema, se hizo varios cambios eliminando la mayoria de Mallocs.
+  En este error de Heaps innecesarios, tenia varios casos y ya que estaba trabado por la dificultad del mensaje "*Connection reset by peer*" (problematica de ISSUE Nro 2). Comence por este problema, se hizo varios cambios eliminando la mayoria de Mallocs.
   A este momento las unicas variables que utilizan el Heap son:
   El input del user - ya que puede ser variable.
   Getline - para lectura del archivo de longitud variable.
