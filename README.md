@@ -130,16 +130,18 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
  ## ISSUE Nro 3 y 4.
   En este error de Heaps innecesarios, tenia varios casos y ya que estaba trabado por la dificultad del mensaje "*Connection reset by peer*" (problematica de ISSUE Nro 2). Comence por este problema, se hizo varios cambios eliminando la mayoria de Mallocs.
   A este momento las unicas variables que utilizan el Heap son:
-  -- El input del user - ya que puede ser variable.
-  -- Getline - para lectura del archivo de longitud variable.
-  -- La palabra recibida desde el cliente enviada por el servidor.
+  
+    -- El input del user - ya que puede ser variable.
+    -- Getline - para lectura del archivo de longitud variable.
+    -- La palabra recibida desde el cliente enviada por el servidor.
+    
   En este ultimo caso, se puede hacer tambien SIN usar el heap, ya que el nos primeros 3 bytes, puedo saber el tamaño de la palabra. No es una buena practica, ya que no se sabe el tamaño que reservar en un principio, ya que se sabe en Runtime el valor.
   
  ## ISSUE Nro 5.
- Este caso no nos llevo mas que cambiar el filename hardcodeado por el valor recibido, esto fue un error mas que nada de "ultimo momento" ya que al dia de la entrega, al ver que no estaba compilando en Sercom pero en mi local si, y no entendia porque, comence a cambiar pruebas. Pero afortunadamente ya estaba enviando el valor de la variable, simplemente se remplazo el hardcode por la variable.
+ Este caso no nos llevo mas que cambiar el filename hardcodeado por el valor recibido, esto fue un error mas que nada de "ultimo momento" ya que al dia de la entrega, al ver que no estaba compilando en Sercom pero en mi local si, y no entendia porque, comence a cambiar cosas y realizar pruebas. Pero afortunadamente ya estaba enviando el valor de la variable, simplemente se remplazo el hardcode por la variable.
  
  ## ISSUE Nro 6.
-  Este error no tengo el claro lo que fue marcado, ya que posteriormente, entendi que lo estaba usando correctamente en ese momento de entrega. No se cambio la forma del Getline ya que se estaba enviando el valor adecuado. Se agrego el Free correspondiente para que se libere la memoria.
+  Este error no tengo el claro lo que fue marcado, ya que posteriormente, se corroboro que lo estaba usando correctamente en ese momento de entrega. No se cambio la forma del Getline ya que se estaba enviando el valor adecuado. Se agrego el Free correspondiente para que se libere la memoria.
   
   
   
