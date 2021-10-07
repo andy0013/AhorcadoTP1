@@ -72,9 +72,11 @@ int locutor_termino_el_juego_perdimos(locutor *locutor);
 
 void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra);
 
+
 /*
  *  Libera recursos pedidos en el TDA locutor.
  */
+void locutor_liberar_memoria(locutor *locutor);
 void locutor_fin(locutor *locutor);
 
 #endif /* LOCUTOR_H_ */
