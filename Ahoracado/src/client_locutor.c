@@ -30,24 +30,18 @@ void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo) {
 	protocolo_recibir_datos_longitud_palabra_servidor(protocolo,
 			&locutor->longitud_palabra);
 
-//	char *palabra_de_partuda =
-//			(char *)calloc(locutor->longitud_palabra,sizeof(char));
-
 	locutor->palabra = (char *)calloc(locutor->longitud_palabra+1,sizeof(char));
 	//MEMSET SOLUCIONA ERROR VALGRIND PARA MANIPULAR STRING RECIBIDO
 	memset(locutor->palabra,'\0',locutor->longitud_palabra+1);
-//	protocolo_recibir_datos_palabra_servidor(protocolo, palabra_de_partuda,
-//			&locutor->longitud_palabra);
+
 	protocolo_recibir_datos_palabra_servidor(protocolo, locutor->palabra,
 			&locutor->longitud_palabra);
-
-//	locutor->palabra = palabra_de_partuda;
 }
 
 int locutor_termino_el_juego_ganamos(locutor *locutor) {
 	if ((strstr(locutor->palabra, "_") == NULL)
 			& (locutor->intentos_usuario > 0)) {
-		printf("Ganaste!\n");
+		printf("Ganaste!!\n");
 		locutor->termino_la_partida = 1;
 		return locutor->termino_la_partida;
 	} else {
@@ -58,7 +52,7 @@ int locutor_termino_el_juego_ganamos(locutor *locutor) {
 int locutor_termino_el_juego_perdimos(locutor *locutor) {
 	if ((locutor->termino_la_partida)
 			& (locutor->intentos_usuario == 0)) {
-		printf("Perdiste! La palabra secreta era: %s\n", locutor->palabra);
+		printf("Perdiste! La palabra secreta era: '%s'\n", locutor->palabra);
 	}
 	return locutor->termino_la_partida;
 }
@@ -74,7 +68,7 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 	if (locutor->input_user == NULL) {
 		size_t size_bytes = 0;
 
-		printf("%s", "Ingrese una letra: ");
+		printf("%s", "Ingrese una letra: \n");
 
 		size_t read = getline(&locutor->input_user, &size_bytes, stdin);
 
