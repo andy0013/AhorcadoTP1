@@ -143,5 +143,10 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
  ## ISSUE Nro 6.
   Este error no tengo el claro lo que fue marcado, ya que posteriormente, se corroboro que lo estaba usando correctamente en ese momento de entrega. No se cambio la forma del Getline ya que se estaba enviando el valor adecuado. Se agrego el Free correspondiente para que se libere la memoria.
   
-  
-  
+# DESAFIO DE ENTREGA AL 100%
+
+A dia de la Fecha la entrega se encuentra al 70%, el mensaje del Sercom recibido 
+
+![ERROR](imagenes/Captura.PNG)
+
+Aun no se encuentra cual es el caso borde que se esta obviando o en que camino esta fallando. De momento se contemplo el caso en el que se ingrese un N incorrecto.
