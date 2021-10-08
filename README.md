@@ -149,14 +149,7 @@ A dia de la Fecha la entrega se encuentra al 70%, el mensaje del Sercom recibido
 
 ![ERROR](imagenes/Captura.PNG)
 
-Aun no se encuentra cual es el caso borde que se esta obviando o en que camino esta fallando. De momento se contemplo el caso en el que se ingrese un N incorrecto.
-
-En caso de que el usuario ingrese un "caracter invalido" o, no ingrese caracter y ingrese "enter" solo, el funcionamiento realizado es:
-
-Si se ingresa enter solo, sin niguna letra, se vuelve a solicitar el caracter.
-
-Si se ingresa "caracter invalido", como seria mayuscula o distinto de "*a-z*", se vuelve a solicitar caracter tambien.
-
+Aun no se encuentra cual es el caso borde que se esta obviando o en que camino esta fallando.
 # FUNCIONAMIENTO EN CASOS BORDE
  
  Por un lado contamos con la posibilidad de que el usuario solo ingrese '\n', es decir enter, en esa situacion lo que se opto es por entenderlo como una cuestion de error de simplemente presionar Enter. En esta situaicio simplemente se vuelve a solicitar al usuario que ingrese una Letra para continuar el flujo correctamente, es decir, en esta situacion no se envia ningun dato al Server.
