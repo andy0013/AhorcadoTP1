@@ -135,7 +135,7 @@ https://github.com/Taller-de-Programacion/clases/tree/master/sockets-mdipaola
     -- Getline - para lectura del archivo de longitud variable.
     -- La palabra recibida desde el cliente enviada por el servidor.
     
-  En este ultimo caso, se puede hacer tambien SIN usar el heap, ya que el nos primeros 3 bytes, puedo saber el tamaño de la palabra. No es una buena practica, ya que no se sabe el tamaño que reservar en un principio, ya que se sabe en Runtime el valor.
+  En este ultimo caso, se puede hacer tambien SIN usar el heap, ya que el nos primeros 3 bytes, puedo saber el tamaño de la palabra. Sin embargo, no es una buena practica, ya que no se sabe el tamaño que reservar en un principio debido a que este valor se conoce en Runtime.
   
  ## ISSUE Nro 5.
  Este caso no nos llevo mas que cambiar el filename hardcodeado por el valor recibido, esto fue un error mas que nada de "ultimo momento" ya que al dia de la entrega, al ver que no estaba compilando en Sercom pero en mi local si, y no entendia porque, comence a cambiar cosas y realizar pruebas. Pero afortunadamente ya estaba enviando el valor de la variable, simplemente se remplazo el hardcode por la variable.
