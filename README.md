@@ -157,3 +157,9 @@ Si se ingresa enter solo, sin niguna letra, se vuelve a solicitar el caracter.
 
 Si se ingresa "caracter invalido", como seria mayuscula o distinto de "*a-z*", se vuelve a solicitar caracter tambien.
 
+# FUNCIONAMIENTO EN CASOS BORDE
+ 
+ Por un lado contamos con la posibilidad de que el usuario solo ingrese '\n', es decir enter, en esa situacion lo que se opto es por entenderlo como una cuestion de error de simplemente presionar Enter. En esta situaicio simplemente se vuelve a solicitar al usuario que ingrese una Letra para continuar el flujo correctamente, es decir, en esta situacion no se envia ningun dato al Server.
+ 
+ Para el caso de que ingrese caracteres invalidos, se opto por continuar con la ejecucion, es decir, que el juego continua, envia ese caracter, y se descuentan intentos. La opcion deseada no es la ejecutada, pero por cuestiones de tiempos y de entregas no se va a validar y volver a solicitar. Es decir, que un caracter mal ingresado sera interpretado como ERROR.
+
