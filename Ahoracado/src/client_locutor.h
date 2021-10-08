@@ -70,6 +70,10 @@ int locutor_termino_el_juego_ganamos(locutor *locutor);
  */
 int locutor_termino_el_juego_perdimos(locutor *locutor);
 
+/*
+ *
+ */
+int locutor_letra_invalida(char *letra_a_enviar);
 void locutor_obtener_letra_del_input_user(locutor *locutor, char *letra);
 
 

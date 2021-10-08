@@ -46,7 +46,7 @@ void juego_user_gano_partida(juego *instancia_de_juego) {
 	consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,
 			instancia_de_juego->palabra_leida.palabra_leida,
 			&instancia_de_juego->intentos_disponibles, 1,
-			instancia_de_juego->palabra_leida.longitud+1);
+			instancia_de_juego->palabra_leida.longitud);
 
 	palabra_fin(&instancia_de_juego->palabra_leida);
 
@@ -62,7 +62,7 @@ void juego_user_perdio_partida(juego *instancia_de_juego) {
 	consola_mensaje_palabra_actual(instancia_de_juego->consola_user_servidor,
 			instancia_de_juego->palabra_leida.palabra_leida,
 			&instancia_de_juego->intentos_disponibles, 1,
-			instancia_de_juego->palabra_leida.longitud+1);
+			instancia_de_juego->palabra_leida.longitud);
 
 	palabra_fin(&instancia_de_juego->palabra_leida);
 

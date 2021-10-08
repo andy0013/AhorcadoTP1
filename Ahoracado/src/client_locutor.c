@@ -63,19 +63,32 @@ void locutor_imprimir_informacon_recibida(locutor *locutor) {
 	printf("Te quedan %i intentos\n", locutor->intentos_usuario);
 }
 
+int locutor_letra_invalida(char *letra_a_enviar){
+	int valor_invalido = 0;
+	if(*letra_a_enviar == '\n')
+		valor_invalido = 1;
+	return valor_invalido;
+}
+
 void locutor_solicitar_letra_del_input_user(locutor *locutor,
 		char *letra_a_enviar) {
 	if (locutor->input_user == NULL) {
 		size_t size_bytes = 0;
 
-		printf("%s", "Ingrese letra: \n");
+		int valor_invalido;
 
-		size_t read = getline(&locutor->input_user, &size_bytes, stdin);
+		do{
+			valor_invalido = 0;
+			printf("%s", "Ingrese letra: \n");
 
-		if(read == -1){}
+			size_t read = getline(&locutor->input_user, &size_bytes, stdin);
 
-		*letra_a_enviar =
+			*letra_a_enviar =
 				locutor->input_user[locutor->posicion_de_letra_enviada];
+
+			if((read == -1) ||(locutor_letra_invalida(*letra_a_enviar)))
+				valor_invalido = 1;
+		}while(valor_invalido);
 	} else {
 		locutor_obtener_letra_del_input_user(locutor, letra_a_enviar);
 	}

@@ -99,7 +99,6 @@ void protocolo_enviar_mensaje_a_cliente(protocolo_t *instancia_de_protocolo,
 	uint16_t len = (uint16_t) longitud;
 	if (flag_estado) {
 		estado_juego = estado_juego + FLAG_DE_TERMINACION;
-		len = len - 1;
 	}
 	uint16_t len_buf = htons(len);
 	socket_send(&instancia_de_protocolo->skt_cliente,(char*)&estado_juego,

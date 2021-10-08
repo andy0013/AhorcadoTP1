@@ -41,7 +41,6 @@ int socket_bind_and_listen(socket_t *self, const char *host,
 	int binded = 0;
 	int connection = -1;
 	struct addrinfo *addr_result, *ptr;
-	//Si enviamos el host con NULL es localhost
 	addr_result = prepare_getaddrinfo(self, NULL, service, SERVER_FLAGS);
 	int fd = -1;
 	for (ptr = addr_result; ptr != NULL && binded == 0; ptr = ptr->ai_next) {
@@ -84,7 +83,8 @@ int socket_connect(socket_t *self, const char *host, const char *service) {
 	int fd = -1;
 	for (ptr = addr_result; ptr != NULL && connection_done == 0;
 			ptr = ptr->ai_next) {
-		/* Creamos el socket y conectamos. si falla la conexion. Salimos. */
+		/* Creamos el socket y intentamos conectar
+		 * , si nunca conecta liberamos posteriormente . */
 		fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
 		connection = connect(fd, ptr->ai_addr, ptr->ai_addrlen);
 		if (connection == 0) {
