@@ -86,7 +86,7 @@ void locutor_solicitar_letra_del_input_user(locutor *locutor,
 			*letra_a_enviar =
 				locutor->input_user[locutor->posicion_de_letra_enviada];
 
-			if((read == -1) ||(locutor_letra_invalida(*letra_a_enviar)))
+			if((read == -1) ||(locutor_letra_invalida(letra_a_enviar)))
 				valor_invalido = 1;
 		}while(valor_invalido);
 	} else {
