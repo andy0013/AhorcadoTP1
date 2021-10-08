@@ -150,3 +150,10 @@ A dia de la Fecha la entrega se encuentra al 70%, el mensaje del Sercom recibido
 ![ERROR](imagenes/Captura.PNG)
 
 Aun no se encuentra cual es el caso borde que se esta obviando o en que camino esta fallando. De momento se contemplo el caso en el que se ingrese un N incorrecto.
+
+En caso de que el usuario ingrese un "caracter invalido" o, no ingrese caracter y ingrese "enter" solo, el funcionamiento realizado es:
+
+Si se ingresa enter solo, sin niguna letra, se vuelve a solicitar el caracter.
+
+Si se ingresa "caracter invalido", como seria mayuscula o distinto de "*a-z*", se vuelve a solicitar caracter tambien.
+
