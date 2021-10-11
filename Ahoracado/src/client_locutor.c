@@ -31,7 +31,7 @@ void locutor_recibir_y_actualizar(locutor *locutor, protocolo_t *protocolo) {
 			&locutor->longitud_palabra);
 
 	locutor->palabra = (char *)calloc(locutor->longitud_palabra+1,sizeof(char));
-	//MEMSET SOLUCIONA ERROR VALGRIND PARA MANIPULAR STRING RECIBIDO
+
 	memset(locutor->palabra,'\0',locutor->longitud_palabra+1);
 
 	protocolo_recibir_datos_palabra_servidor(protocolo, locutor->palabra,

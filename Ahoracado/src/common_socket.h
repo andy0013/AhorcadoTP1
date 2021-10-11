@@ -11,8 +11,8 @@
 #include <unistd.h>
 
 
-#define CLIENT_FLAGS 0
-#define SERVER_FLAGS AI_PASSIVE
+#define FLAG_CLIENTE 0
+#define FLAG_SERVIDOR AI_PASSIVE
 
 typedef struct {
 	int fd;
