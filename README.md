@@ -164,7 +164,7 @@ Aun no se encuentra cual es el caso borde que se esta obviando o en que camino e
 
 ## PRUEBAS
 * Ingresamos enter de forma consecutiva. __comportamiento esperado:__ **volver a solicitar ingreso letra**
-* Ingresamos valores elevados y falsos (negativo o cero) __comportamiento esperado:__ **valores elevados flujo normal, falsos: retorno ERROR y finalizo**
+* Ingresamos valores elevados y falsos como cantidad de intentos (negativo o cero) __comportamiento esperado:__ **valores elevados flujo normal, falsos: retorno ERROR y finalizo**
 * Usamos una palabra del texto super larga __comportamiento esperado:__ **flujo normal** 
 * Ingreso de letras en mayuscula __comportamiento esperado:__ **Reducir intentos** 
 
