@@ -161,3 +161,13 @@ Aun no se encuentra cual es el caso borde que se esta obviando o en que camino e
  Para el TP no logre superar la barrera de los 70%. En la ejecucion normal, funciona correctamente, previamente el mayor error que me surgio, la razon por la cual no estaba recibiendo mis stdin el servidor era una cuestion de connect en la implementacion del socket. Como ultimo cambio, Implemente por mi cuenta el socket, se pueden encontrar algunas que otras diferencias importantes con el codigo anterior usado, como por ejemplo, variables enviadas de manera innecesarias, o falta de condicionales.
  El mayor cambio que se realizo fue que se agrego en los send y recv, que si despues de ejecutarlos nos retornan valor 0 o 1, interpretamos como que nos cierran la conexion o que hubo un error, en esta situacion, se cierra el socket involucrado. 
  Espere que esto logre contemplar este caso borde que no pude hayar previamente de manera convencional, apenalando a cuestion de letras ingresadas o un "\n" ingresado. Pero aun no, creo que existe la posibilidad de que este cambio que agregue sea correcto, ya que es lo mas relevante que se detecto en el codigo para corregir. Sin embargo, no funciona debido a que deberia Catchear el retorno, y continuar en Runtime propagando este codigo de error para que se cierre todo ordenadamente; sin embargo, no se realizo este cambio principalmente por cuestiones de tiempo.
+
+## PRUEBAS
+* Ingresamos enter de forma consecutiva. __comportamiento esperado:__ **volver a solicitar ingreso letra**
+* Ingresamos valores elevados y falsos (negativo o cero) __comportamiento esperado:__ **valores elevados flujo normal, falsos: retorno ERROR y finalizo**
+* Usamos una palabra del texto super larga __comportamiento esperado:__ **flujo normal** 
+* Ingreso de letras en mayuscula __comportamiento esperado:__ **Reducir intentos** 
+
+## RESULTADOS
+* Para todas las pruebas se obtuvo el comportamiento esperado.
+
